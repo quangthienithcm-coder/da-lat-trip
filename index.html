@@ -296,7 +296,7 @@
             </div>
         </div>
 
-        <!-- MUSIC PLAYER CHẠY BẢN MIỄN PHÍ KHÔNG BẢN QUYỀN VÀ CÓ NÚT MỞ BÀI GỐC -->
+        <!-- MUSIC PLAYER AUDIO MULTI-SOURCE -->
         <div class="music-card">
             <div class="music-info">
                 <div class="disc-icon" id="discIcon"><i class="fa-solid fa-compact-disc"></i></div>
@@ -311,8 +311,9 @@
                 <a class="btn-link" href="https://zingmp3.vn/tim-kiem/tat-ca?q=Dua%20Nhau%20Di%20Tron%20Den" target="_blank" title="Mở Zing MP3 Bài Gốc"><i class="fa-solid fa-music"></i></a>
             </div>
         </div>
-        <!-- Audio HTML5 -->
+        <!-- Audio HTML5: Ưu tiên file local duanhauditron.mp3 nếu upload chung -->
         <audio id="mainAudioPlayer" preload="auto">
+            <source src="duanhauditron.mp3" type="audio/mpeg">
             <source src="https://ia801503.us.archive.org/15/items/lofi-chill-track/lofi.mp3" type="audio/mpeg">
         </audio>
     </div>
@@ -698,41 +699,7 @@
 </div>
 
 <script>
-    // TÍNH TOÁN VÀ TỰ ĐỘNG LƯU CHI PHÍ
-    function calcTotalCost() {
-        let estTotal = 0;
-        let realTotal = 0;
-
-        document.querySelectorAll('.cost-real-input').forEach(input => {
-            const estVal = parseInt(input.getAttribute('data-est')) || 0;
-            const realVal = parseInt(input.value) || 0;
-
-            estTotal += estVal;
-            realTotal += realVal;
-
-            // Lưu dữ liệu vào localStorage
-            localStorage.setItem(input.id, input.value);
-        });
-
-        document.getElementById('totalEst').innerText = estTotal.toLocaleString('vi-VN') + ' đ';
-        document.getElementById('totalReal').innerText = realTotal.toLocaleString('vi-VN') + ' đ';
-
-        const diff = realTotal - estTotal;
-        const diffBox = document.getElementById('diffVal');
-        
-        if (realTotal === 0) {
-            diffBox.innerText = '0 đ (Sẵn sàng)';
-            diffBox.style.color = '#34d399';
-        } else if (diff <= 0) {
-            diffBox.innerText = Math.abs(diff).toLocaleString('vi-VN') + ' đ (Tiết kiệm)';
-            diffBox.style.color = '#34d399';
-        } else {
-            diffBox.innerText = '+' + diff.toLocaleString('vi-VN') + ' đ (Vượt)';
-            diffBox.style.color = '#fca5a5';
-        }
-    }
-
-    // LIST NHẠC CDN KHÔNG BẢN QUYỀN CHẠY 100% ỔN ĐỊNH
+    // BỘ PHÁT NHẠC
     const playlist = [
         { title: "Đưa Nhau Đi Trốn (Lofi Chill)", artist: "Đen ft. Linh Cáo • Nhạc Đi Đường", src: "https://ia801503.us.archive.org/15/items/lofi-chill-track/lofi.mp3" },
         { title: "Bài Ca Tuổi Trẻ (Acoustic)", artist: "Mây, Long, Tam Kê • Lofi Mix", src: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73111.mp3?filename=chill-lofi-song-10528.mp3" }
@@ -753,7 +720,8 @@
                 document.getElementById('discIcon').classList.add('playing');
                 isPlaying = true;
             }).catch(e => {
-                alert('Chạm nhẹ vào màn hình 1 phát rồi bấm nút Play lại nhé!');
+                // Nếu trình duyệt chặn, mở Zing MP3 ngay lập tức làm phương án 2
+                window.open('https://zingmp3.vn/tim-kiem/tat-ca?q=Dua%20Nhau%20Di%20Tron%20Den', '_blank');
             });
         }
     }
@@ -765,6 +733,38 @@
         audio.src = playlist[currentSongIndex].src;
         audio.load();
         if (isPlaying) audio.play();
+    }
+
+    function calcTotalCost() {
+        let estTotal = 0;
+        let realTotal = 0;
+
+        document.querySelectorAll('.cost-real-input').forEach(input => {
+            const estVal = parseInt(input.getAttribute('data-est')) || 0;
+            const realVal = parseInt(input.value) || 0;
+
+            estTotal += estVal;
+            realTotal += realVal;
+
+            localStorage.setItem(input.id, input.value);
+        });
+
+        document.getElementById('totalEst').innerText = estTotal.toLocaleString('vi-VN') + ' đ';
+        document.getElementById('totalReal').innerText = realTotal.toLocaleString('vi-VN') + ' đ';
+
+        const diff = realTotal - estTotal;
+        const diffBox = document.getElementById('diffVal');
+        
+        if (realTotal === 0) {
+            diffBox.innerText = '0 đ (Sẵn sàng)';
+            diffBox.style.color = '#34d399';
+        } else if (diff <= 0) {
+            diffBox.innerText = Math.abs(diff).toLocaleString('vi-VN') + ' đ (Tiết kiệm)';
+            diffBox.style.color = '#34d399';
+        } else {
+            diffBox.innerText = '+' + diff.toLocaleString('vi-VN') + ' đ (Vượt)';
+            diffBox.style.color = '#fca5a5';
+        }
     }
 
     function copyText(text) {
@@ -875,7 +875,6 @@
         autoCheckTimeline();
         setInterval(autoCheckTimeline, 30000);
 
-        // Nạp lại chi phí đã lưu
         document.querySelectorAll('.cost-real-input').forEach(input => {
             if (localStorage.getItem(input.id)) {
                 input.value = localStorage.getItem(input.id);
