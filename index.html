@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kim Chi & Quang Thiện - Cyber Travel Mate</title>
+    <title>Kim Chi & Quang Thiện - Ultimate Da Lat App</title>
     <meta name="theme-color" content="#030712">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
         .widget-val { font-weight: 800; font-size: 13px; color: #fff; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        /* WEATHER FORECAST MODAL POPUP */
+        /* WEATHER POPUP MODAL */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -103,7 +103,7 @@
         .rain-low { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
         .rain-yes { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
 
-        /* TỐI ƯU THANH TABBAR KHÔNG BỊ TRÀN */
+        /* TỐI ƯU THANH TABBAR */
         .tabs-container { 
             margin: 15px 15px 0; 
             overflow-x: auto; 
@@ -148,8 +148,6 @@
         .content.active { display: block !important; }
         
         .timeline-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; backdrop-filter: blur(10px); transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.4); position: relative; }
-        
-        /* Trạng thái tự động */
         .timeline-card.done { opacity: 0.4; filter: grayscale(0.8); transform: scale(0.98); }
         .timeline-card.now-active { border-color: #34d399; box-shadow: 0 0 15px rgba(52, 211, 153, 0.4); }
 
@@ -198,6 +196,9 @@
         .step-name { font-weight: 700; color: #fff; }
         .step-dist { font-size: 10px; color: #67e8f9; font-weight: 600; display: flex; align-items: center; gap: 4px; }
 
+        /* Quick Copy Button */
+        .copy-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--card-border); color: #34d399; font-size: 10px; font-weight: 700; padding: 4px 8px; border-radius: 6px; cursor: pointer; margin-left: 6px; }
+
         /* Checklist Style */
         .pack-section-title { font-size: 11px; font-weight: 800; color: #34d399; text-transform: uppercase; margin: 12px 0 8px; letter-spacing: 1px; }
         .pack-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
@@ -229,7 +230,7 @@
         <!-- Care Alert -->
         <div class="care-alert">
             <i class="fa-solid fa-shield-halved"></i>
-            <div><b>Lưu ý di chuyển:</b> Thẻ lịch trình tự động chuyển "Đã đi" khi hết khung giờ!</div>
+            <div><b>Lưu ý di chuyển:</b> Bấm vào thẻ thời tiết bên dưới để xem dự báo mưa theo giờ!</div>
         </div>
 
         <!-- Widgets -->
@@ -308,12 +309,12 @@
         </div>
     </div>
 
-    <!-- NGÀY 1 (THỜI GIAN THỰC TỰ CHECK) -->
+    <!-- NGÀY 1 -->
     <div id="d1" class="content active">
         <div class="timeline-card" id="c1" data-date="2026-08-08" data-start="05:00" data-end="07:00">
             <div class="card-top"><span class="time">05:00 - 07:00</span><span class="tag">Khách sạn & Săn mây</span></div>
             <div class="card-title">Cất đồ KS The Grace ➔ Thác Mây <button class="check-btn" onclick="toggleDone('c1')"><i class="fa-regular fa-circle-check"></i></button></div>
-            <div class="card-desc">Xe Tân Kim Chi trung chuyển tới KS The Grace (51 Nam Kỳ Khởi Nghĩa) gửi đồ miễn phí, nhận xe máy rồi đi săn mây Thác Mây.</div>
+            <div class="card-desc">Xe Tân Kim Chi trung chuyển tới KS The Grace (51 Nam Kỳ Khởi Nghĩa <button class="copy-btn" onclick="copyText('51 Nam Kỳ Khởi Nghĩa, Xuân Hương, Đà Lạt')">Sao chép</button>) gửi đồ miễn phí, nhận xe máy rồi đi săn mây Thác Mây.</div>
             <div class="outfit-box"><i class="fa-solid fa-shirt"></i> Outfit gợi ý: Áo khoác ấm + Khăn len (Sáng sớm lạnh ~15°C)</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Thác+Mây+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
@@ -363,7 +364,7 @@
         </div>
     </div>
 
-    <!-- NGÀY 2 (THỜI GIAN THỰC TỰ CHECK) -->
+    <!-- NGÀY 2 -->
     <div id="d2" class="content">
         <div class="timeline-card" id="c7" data-date="2026-08-09" data-start="05:00" data-end="07:15">
             <div class="card-top"><span class="time">05:00 - 07:15</span><span class="tag hot">VIEW ĐỈNH</span></div>
@@ -536,8 +537,8 @@
         <a class="btn-action btn-gas" href="https://www.google.com/maps/search/?api=1&query=gas+station" target="_blank">
             <i class="fa-solid fa-gas-pump"></i> Cây Xăng
         </a>
-        <a class="btn-action btn-sos" href="https://www.google.com/maps/search/?api=1&query=tiệm+sửa+xe+máy" target="_blank">
-            <i class="fa-solid fa-wrench"></i> Cứu Hộ Xe
+        <a class="btn-action btn-sos" href="tel:02633821269">
+            <i class="fa-solid fa-phone-volume"></i> Gọi Cứu Hộ
         </a>
         <a class="btn-action btn-primary" href="https://www.google.com/maps/search/?api=1&query=51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt" target="_blank">
             <i class="fa-solid fa-hotel"></i> Về KS The Grace
@@ -546,6 +547,11 @@
 </div>
 
 <script>
+    function copyText(text) {
+        navigator.clipboard.writeText(text);
+        alert('Đã sao chép địa chỉ: ' + text);
+    }
+
     function openWeatherModal() {
         document.getElementById('weatherModal').classList.add('active');
     }
@@ -569,16 +575,13 @@
         const card = document.getElementById(id);
         if (card) {
             card.classList.toggle('done');
-            // Nếu người dùng bấm tay, lưu trạng thái ghi đè
             localStorage.setItem(id + '_manual', 'true');
             localStorage.setItem(id, card.classList.contains('done'));
         }
     }
 
-    // TỰ ĐỘNG CHECK LỊCH TRÌNH THEO THỜI GIAN THỰC
     function autoCheckTimeline() {
         const now = new Date();
-        
         document.querySelectorAll('.timeline-card').forEach(card => {
             const cardId = card.id;
             const dateStr = card.getAttribute('data-date');
@@ -589,7 +592,6 @@
                 const startTime = new Date(`${dateStr}T${startStr}:00`);
                 const endTime = new Date(`${dateStr}T${endStr}:00`);
 
-                // Nếu người dùng chưa từng tương tác thủ công
                 if (localStorage.getItem(cardId + '_manual') !== 'true') {
                     if (now > endTime) {
                         card.classList.add('done');
@@ -602,7 +604,6 @@
                         card.classList.remove('now-active');
                     }
                 } else {
-                    // Nếu đã bấm thủ công thì theo localStorage
                     if (localStorage.getItem(cardId) === 'true') {
                         card.classList.add('done');
                     } else {
@@ -623,7 +624,6 @@
         localStorage.setItem('userNote', note);
     }
 
-    // REALTIME WEATHER API (OPEN-METEO FOR DA LAT)
     async function fetchDaLatWeather() {
         try {
             const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=11.9465&longitude=108.4419&current_weather=true');
@@ -653,7 +653,7 @@
     window.onload = () => {
         fetchDaLatWeather();
         autoCheckTimeline();
-        setInterval(autoCheckTimeline, 30000); // Tự động quét lại mỗi 30 giây
+        setInterval(autoCheckTimeline, 30000);
 
         ['pk1','pk2','pk3','pk4','pk5','pk_c1','pk_c2','pk_c3','pk_c5'].forEach(id => {
             if(localStorage.getItem(id) === 'true') {
