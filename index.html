@@ -147,8 +147,11 @@
         .content { padding: 15px 20px 0; display: none; }
         .content.active { display: block !important; }
         
-        .timeline-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; backdrop-filter: blur(10px); transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
-        .timeline-card.done { opacity: 0.35; filter: grayscale(1); transform: scale(0.98); }
+        .timeline-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; backdrop-filter: blur(10px); transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.4); position: relative; }
+        
+        /* Trạng thái tự động */
+        .timeline-card.done { opacity: 0.4; filter: grayscale(0.8); transform: scale(0.98); }
+        .timeline-card.now-active { border-color: #34d399; box-shadow: 0 0 15px rgba(52, 211, 153, 0.4); }
 
         .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .time { font-size: 11px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.12); padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(52, 211, 153, 0.2); }
@@ -226,7 +229,7 @@
         <!-- Care Alert -->
         <div class="care-alert">
             <i class="fa-solid fa-shield-halved"></i>
-            <div><b>Lưu ý di chuyển:</b> Bấm vào thẻ thời tiết bên dưới để xem dự báo mưa theo giờ!</div>
+            <div><b>Lưu ý di chuyển:</b> Thẻ lịch trình tự động chuyển "Đã đi" khi hết khung giờ!</div>
         </div>
 
         <!-- Widgets -->
@@ -305,9 +308,9 @@
         </div>
     </div>
 
-    <!-- NGÀY 1 -->
+    <!-- NGÀY 1 (THỜI GIAN THỰC TỰ CHECK) -->
     <div id="d1" class="content active">
-        <div class="timeline-card" id="c1">
+        <div class="timeline-card" id="c1" data-date="2026-08-08" data-start="05:00" data-end="07:00">
             <div class="card-top"><span class="time">05:00 - 07:00</span><span class="tag">Khách sạn & Săn mây</span></div>
             <div class="card-title">Cất đồ KS The Grace ➔ Thác Mây <button class="check-btn" onclick="toggleDone('c1')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Xe Tân Kim Chi trung chuyển tới KS The Grace (51 Nam Kỳ Khởi Nghĩa) gửi đồ miễn phí, nhận xe máy rồi đi săn mây Thác Mây.</div>
@@ -315,21 +318,21 @@
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Thác+Mây+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c2">
+        <div class="timeline-card" id="c2" data-date="2026-08-08" data-start="07:15" data-end="08:15">
             <div class="card-top"><span class="time">07:15 - 08:15</span><span class="tag">Ăn sáng</span></div>
             <div class="card-title">Bánh Mì Xíu Mại 79 <button class="check-btn" onclick="toggleDone('c2')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Số 1 Thông Thiên Học (Quán 79 gốc). Bánh mì giòn chấm xíu mại đậm vị nóng hổi.</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=1+Thông+Thiên+Học+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c3_1">
+        <div class="timeline-card" id="c3_1" data-date="2026-08-08" data-start="08:30" data-end="10:00">
             <div class="card-top"><span class="time">08:30 - 10:00</span><span class="tag">Check-in</span></div>
             <div class="card-title">Đồi Măng Lin <button class="check-btn" onclick="toggleDone('c3_1')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Chụp ảnh đồi thông Măng Lin thơ mộng (Tiện tuyến Tỉnh lộ 725 không bị ngược).</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Đồi+Măng+Lin+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c3_2">
+        <div class="timeline-card" id="c3_2" data-date="2026-08-08" data-start="10:00" data-end="11:45">
             <div class="card-top"><span class="time">10:00 - 11:45</span><span class="tag">Check-in</span></div>
             <div class="card-title">Con Đường Suối Vàng <button class="check-btn" onclick="toggleDone('c3_2')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Khám phá thảo nguyên xanh ngát, check-in hồ nước thơ mộng & Cây thông cô đơn.</div>
@@ -337,14 +340,14 @@
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Hồ+Suối+Vàng+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c4">
+        <div class="timeline-card" id="c4" data-date="2026-08-08" data-start="12:00" data-end="13:30">
             <div class="card-top"><span class="time">12:00 - 13:30</span><span class="tag">Ăn trưa & Check-in KS</span></div>
             <div class="card-title">Sườn Cay ➔ Nhận Phòng KS The Grace <button class="check-btn" onclick="toggleDone('c4')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Ăn trưa Sườn cay (42 Phan Chu Trinh) hoặc Lẩu Thái (26 Nguyễn Văn Cừ) rồi về KS The Grace (51 Nam Kỳ Khởi Nghĩa) nhận phòng nghỉ ngơi.</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt" target="_blank"><i class="fa-solid fa-hotel"></i> Đường về KS The Grace</a>
         </div>
 
-        <div class="timeline-card" id="c5" style="border-color: rgba(245, 158, 11, 0.4);">
+        <div class="timeline-card" id="c5" data-date="2026-08-08" data-start="15:30" data-end="18:00" style="border-color: rgba(245, 158, 11, 0.4);">
             <div class="card-top"><span class="time" style="color: #f59e0b; background: rgba(245, 158, 11, 0.12);">15:30 - 18:00</span><span class="tag hot">HOT TIKTOK ★</span></div>
             <div class="card-title">Miền Du Mục Đà Lạt 🎪 <button class="check-btn" onclick="toggleDone('c5')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Đón hoàng hôn tuyệt đẹp từ 16:00. Phong cách Mông Cổ, đồi cừu & lều trại.</div>
@@ -352,7 +355,7 @@
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Miền+Du+Mục+Đà+Lạt" target="_blank" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c6">
+        <div class="timeline-card" id="c6" data-date="2026-08-08" data-start="18:30" data-end="21:00">
             <div class="card-top"><span class="time">18:30 - 21:00</span><span class="tag">Ăn tối</span></div>
             <div class="card-title">BBQ Nướng & Chợ Đêm <button class="check-btn" onclick="toggleDone('c6')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Đồ nướng nóng hổi, sữa đậu nành nóng & dạo không khí chợ đêm (Ngay sát KS The Grace đi bộ rất tiện).</div>
@@ -360,23 +363,23 @@
         </div>
     </div>
 
-    <!-- NGÀY 2 -->
+    <!-- NGÀY 2 (THỜI GIAN THỰC TỰ CHECK) -->
     <div id="d2" class="content">
-        <div class="timeline-card" id="c7">
+        <div class="timeline-card" id="c7" data-date="2026-08-09" data-start="05:00" data-end="07:15">
             <div class="card-top"><span class="time">05:00 - 07:15</span><span class="tag hot">VIEW ĐỈNH</span></div>
             <div class="card-title">Săn Mây Đồi Chè Cầu Đất <button class="check-btn" onclick="toggleDone('c7')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Biển mây vờn quạt gió khổng lồ. Đón bình minh rực rỡ nhất Đà Lạt.</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Đồi+Chè+Cầu+Đất+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c8">
+        <div class="timeline-card" id="c8" data-date="2026-08-09" data-start="07:30" data-end="08:30">
             <div class="card-top"><span class="time">07:30 - 08:30</span><span class="tag">Ăn sáng</span></div>
             <div class="card-title">Bánh Căn Lệ (Yersin) <button class="check-btn" onclick="toggleDone('c8')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Bánh căn trứng cút lòng đào chấm xíu mại nóng giòn trọn vị.</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Bánh+Căn+Lệ+Yersin+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c9">
+        <div class="timeline-card" id="c9" data-date="2026-08-09" data-start="08:30" data-end="10:30">
             <div class="card-top"><span class="time">08:30 - 10:30</span><span class="tag">Cafe View</span></div>
             <div class="card-title">Tiệm Cafe Túi Mơ To 🌼 <button class="check-btn" onclick="toggleDone('c9')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Vườn cúc họa mi trắng mộng mơ & view trọn thung lũng nhà kính.</div>
@@ -384,14 +387,14 @@
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Tiệm+cà+phê+Túi+Mơ+To+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c10">
+        <div class="timeline-card" id="c10" data-date="2026-08-09" data-start="10:30" data-end="12:00">
             <div class="card-top"><span class="time">10:30 - 12:00</span><span class="tag">Trải nghiệm</span></div>
             <div class="card-title">Hái Dâu Tây & Quảng Trường <button class="check-btn" onclick="toggleDone('c10')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Tự tay hái dâu tươi tại vườn làm quà & check-in Nụ hoa Atiso Hồ Xuân Hương.</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Quảng+Trường+Lâm+Viên" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline-card" id="c11">
+        <div class="timeline-card" id="c11" data-date="2026-08-09" data-start="12:00" data-end="14:00">
             <div class="card-top"><span class="time">12:00 - 14:00</span><span class="tag">Trả Phòng & Về ĐN</span></div>
             <div class="card-title">Lẩu Gà Lá É ➔ Bến Xe Liên Tỉnh <button class="check-btn" onclick="toggleDone('c11')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Ăn trưa lẩu gà Tao Ngộ ➔ Về KS The Grace trả phòng & xe máy ➔ Di chuyển ra Bến xe Liên tỉnh Đà Lạt về lại Đà Nẵng.</div>
@@ -566,8 +569,48 @@
         const card = document.getElementById(id);
         if (card) {
             card.classList.toggle('done');
+            // Nếu người dùng bấm tay, lưu trạng thái ghi đè
+            localStorage.setItem(id + '_manual', 'true');
             localStorage.setItem(id, card.classList.contains('done'));
         }
+    }
+
+    // TỰ ĐỘNG CHECK LỊCH TRÌNH THEO THỜI GIAN THỰC
+    function autoCheckTimeline() {
+        const now = new Date();
+        
+        document.querySelectorAll('.timeline-card').forEach(card => {
+            const cardId = card.id;
+            const dateStr = card.getAttribute('data-date');
+            const startStr = card.getAttribute('data-start');
+            const endStr = card.getAttribute('data-end');
+
+            if (dateStr && startStr && endStr) {
+                const startTime = new Date(`${dateStr}T${startStr}:00`);
+                const endTime = new Date(`${dateStr}T${endStr}:00`);
+
+                // Nếu người dùng chưa từng tương tác thủ công
+                if (localStorage.getItem(cardId + '_manual') !== 'true') {
+                    if (now > endTime) {
+                        card.classList.add('done');
+                        card.classList.remove('now-active');
+                    } else if (now >= startTime && now <= endTime) {
+                        card.classList.remove('done');
+                        card.classList.add('now-active');
+                    } else {
+                        card.classList.remove('done');
+                        card.classList.remove('now-active');
+                    }
+                } else {
+                    // Nếu đã bấm thủ công thì theo localStorage
+                    if (localStorage.getItem(cardId) === 'true') {
+                        card.classList.add('done');
+                    } else {
+                        card.classList.remove('done');
+                    }
+                }
+            }
+        });
     }
 
     function saveCheck(id) {
@@ -609,9 +652,9 @@
 
     window.onload = () => {
         fetchDaLatWeather();
-        document.querySelectorAll('.timeline-card').forEach(card => {
-            if(card.id && localStorage.getItem(card.id) === 'true') card.classList.add('done');
-        });
+        autoCheckTimeline();
+        setInterval(autoCheckTimeline, 30000); // Tự động quét lại mỗi 30 giây
+
         ['pk1','pk2','pk3','pk4','pk5','pk_c1','pk_c2','pk_c3','pk_c5'].forEach(id => {
             if(localStorage.getItem(id) === 'true') {
                 const el = document.getElementById(id);
