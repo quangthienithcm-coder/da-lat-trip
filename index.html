@@ -60,7 +60,7 @@
         .widget-val { font-weight: 800; font-size: 13px; color: #fff; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        /* MUSIC PLAYER WIDGET FIX */
+        /* MUSIC PLAYER WIDGET */
         .music-card {
             margin: 10px 20px 0;
             background: rgba(17, 24, 39, 0.95);
@@ -74,7 +74,7 @@
         }
         .music-info { display: flex; align-items: center; gap: 10px; overflow: hidden; }
         .disc-icon { 
-            width: 32px; height: 32px; border-radius: 50%; 
+            width: 34px; height: 34px; border-radius: 50%; 
             background: linear-gradient(135deg, #f59e0b, #ef4444); 
             display: flex; align-items: center; justify-content: center; 
             color: #030712; font-size: 14px;
@@ -83,11 +83,12 @@
         }
         .disc-icon.playing { animation-play-state: running; }
         @keyframes spinDisc { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .song-title { font-size: 11px; font-weight: 800; color: #fef08a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+        .song-title { font-size: 11px; font-weight: 800; color: #fef08a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 155px; }
         .song-artist { font-size: 10px; color: var(--text-muted); }
-        .music-ctrls { display: flex; align-items: center; gap: 8px; }
+        .music-ctrls { display: flex; align-items: center; gap: 6px; }
         .btn-play { background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.5); color: #f59e0b; width: 34px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; cursor: pointer; transition: 0.2s; }
         .btn-play:active { transform: scale(0.9); background: #f59e0b; color: #030712; }
+        .btn-link { background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; width: 34px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; text-decoration: none; }
 
         /* WEATHER POPUP MODAL */
         .modal-overlay {
@@ -132,7 +133,7 @@
         .rain-low { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
         .rain-yes { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
 
-        /* TỐI ƯU THANH TABBAR */
+        /* TỐI ƯU THANH TABBAR BAR 6 TABS */
         .tabs-container { 
             margin: 15px 15px 0; 
             overflow-x: auto; 
@@ -152,7 +153,7 @@
         }
         .tab { 
             flex: 1;
-            padding: 8px 12px; 
+            padding: 8px 10px; 
             text-align: center; 
             border: none; 
             background: transparent; 
@@ -196,7 +197,22 @@
         .check-btn { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; transition: 0.2s; }
         .timeline-card.done .check-btn { color: #34d399; transform: scale(1.1); }
 
-        /* ANIMATED CYBER SCOOTER MAP WITH STEP DISTANCE */
+        /* COST TAB STYLING */
+        .cost-summary-box { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 18px; padding: 16px; margin-bottom: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center; }
+        .cost-sum-item { background: rgba(30, 41, 59, 0.6); padding: 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .cost-sum-val { font-size: 15px; font-weight: 800; color: #34d399; margin-top: 2px; }
+        .cost-sum-lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+        
+        .diff-box { grid-column: span 2; background: rgba(245, 158, 11, 0.1); border: 1px border rgba(245, 158, 11, 0.3); padding: 8px; border-radius: 10px; font-size: 12px; font-weight: 800; color: #fef08a; display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; }
+
+        .cost-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .cost-name { font-size: 12px; font-weight: 700; color: #fff; }
+        .cost-sub { font-size: 10px; color: var(--text-muted); }
+        .cost-inputs { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+        .cost-est { font-size: 11px; color: #34d399; font-weight: 700; }
+        .cost-real-input { width: 90px; background: rgba(0,0,0,0.4); border: 1px solid var(--card-border); border-radius: 8px; padding: 6px 8px; color: #fef08a; font-size: 12px; font-weight: 800; text-align: right; outline: none; }
+
+        /* ANIMATED CYBER SCOOTER MAP */
         .map-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 16px; backdrop-filter: blur(10px); }
         .map-title { font-size: 13px; font-weight: 800; color: #34d399; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
         .route-flow { display: flex; flex-direction: column; gap: 16px; position: relative; padding-left: 24px; }
@@ -280,21 +296,25 @@
             </div>
         </div>
 
-        <!-- MUSIC PLAYER FIX BẠN BẤM CHẠM VÀO LÀ PHÁT NGAY -->
+        <!-- MUSIC PLAYER CHẠY BẢN MIỄN PHÍ KHÔNG BẢN QUYỀN VÀ CÓ NÚT MỞ BÀI GỐC -->
         <div class="music-card">
             <div class="music-info">
                 <div class="disc-icon" id="discIcon"><i class="fa-solid fa-compact-disc"></i></div>
                 <div>
-                    <div class="song-title" id="songTitle">Đưa Nhau Đi Trốn</div>
-                    <div class="song-artist" id="songArtist">Đen ft. Linh Cung • Lofi Mix</div>
+                    <div class="song-title" id="songTitle">Đưa Nhau Đi Trốn (Lofi Chill)</div>
+                    <div class="song-artist" id="songArtist">Đen ft. Linh Cáo • Nhạc Đi Đường</div>
                 </div>
             </div>
             <div class="music-ctrls">
                 <button class="btn-play" id="playBtn" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
                 <button class="btn-play" onclick="nextSong()"><i class="fa-solid fa-forward-step"></i></button>
+                <a class="btn-link" href="https://zingmp3.vn/tim-kiem/tat-ca?q=Dua%20Nhau%20Di%20Tron%20Den" target="_blank" title="Mở Zing MP3 Bài Gốc"><i class="fa-solid fa-music"></i></a>
             </div>
         </div>
-        <audio id="audioPlayer" preload="auto" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+        <!-- Audio HTML5 -->
+        <audio id="mainAudioPlayer" preload="auto">
+            <source src="https://ia801503.us.archive.org/15/items/lofi-chill-track/lofi.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
     <!-- WEATHER POPUP MODAL -->
@@ -342,12 +362,13 @@
         </div>
     </div>
 
-    <!-- Tab Navigation -->
+    <!-- Tab Navigation (6 TABS) -->
     <div class="tabs-container">
         <div class="tabs">
             <button class="tab active" onclick="switchDay('d1', this)">Ngày 1</button>
             <button class="tab" onclick="switchDay('d2', this)">Ngày 2</button>
             <button class="tab" onclick="switchDay('mapTab', this)">🗺️ Bản Đồ</button>
+            <button class="tab" onclick="switchDay('costTab', this)">💸 Chi Phí</button>
             <button class="tab" onclick="switchDay('food', this)">🍜 Món Phụ</button>
             <button class="tab" onclick="switchDay('pack', this)">🧳 Hành Lý</button>
         </div>
@@ -530,6 +551,92 @@
         </div>
     </div>
 
+    <!-- TAB CHI PHÍ VÀ FREE TEXT THỰC TẾ -->
+    <div id="costTab" class="content">
+        <div class="cost-summary-box">
+            <div class="cost-sum-item">
+                <div class="cost-sum-lbl">Dự Kiến Khoảng</div>
+                <div class="cost-sum-val" id="totalEst">0 đ</div>
+            </div>
+            <div class="cost-sum-item">
+                <div class="cost-sum-lbl">Thực Tế Tiêu</div>
+                <div class="cost-sum-val" style="color: #f59e0b;" id="totalReal">0 đ</div>
+            </div>
+            <div class="diff-box">
+                <span>Chênh Lệch Thực Tế:</span>
+                <span id="diffVal" style="color: #34d399;">0 đ (Dư)</span>
+            </div>
+        </div>
+
+        <div class="pack-section-title">📊 Chi Tiết Các Khoản Chi (2 Người)</div>
+
+        <div class="cost-item">
+            <div>
+                <div class="cost-name">🚌 Vé xe Tân Kim Chi (Khứ hồi)</div>
+                <div class="cost-sub">Đà Nẵng ⇄ Đà Lạt (2 vé)</div>
+            </div>
+            <div class="cost-inputs">
+                <div class="cost-est">Đoán: 1,400,000đ</div>
+                <input class="cost-real-input" type="number" id="cost_1" data-est="1400000" placeholder="Thực tế đ" oninput="calcTotalCost()">
+            </div>
+        </div>
+
+        <div class="cost-item">
+            <div>
+                <div class="cost-name">🏨 Khách sạn The Grace</div>
+                <div class="cost-sub">51 Nam Kỳ Khởi Nghĩa (2 đêm)</div>
+            </div>
+            <div class="cost-inputs">
+                <div class="cost-est">Đoán: 900,000đ</div>
+                <input class="cost-real-input" type="number" id="cost_2" data-est="900000" placeholder="Thực tế đ" oninput="calcTotalCost()">
+            </div>
+        </div>
+
+        <div class="cost-item">
+            <div>
+                <div class="cost-name">🛵 Thuê xe máy & Xăng xe</div>
+                <div class="cost-sub">2 ngày + 2 lần đổ xăng đầy bình</div>
+            </div>
+            <div class="cost-inputs">
+                <div class="cost-est">Đoán: 350,000đ</div>
+                <input class="cost-real-input" type="number" id="cost_3" data-est="350000" placeholder="Thực tế đ" oninput="calcTotalCost()">
+            </div>
+        </div>
+
+        <div class="cost-item">
+            <div>
+                <div class="cost-name">🍜 Ăn uống chính & Ăn vặt</div>
+                <div class="cost-sub">Bánh mì xíu mại, BBQ, Lẩu gà, Kem bơ...</div>
+            </div>
+            <div class="cost-inputs">
+                <div class="cost-est">Đoán: 1,200,000đ</div>
+                <input class="cost-real-input" type="number" id="cost_4" data-est="1200000" placeholder="Thực tế đ" oninput="calcTotalCost()">
+            </div>
+        </div>
+
+        <div class="cost-item">
+            <div>
+                <div class="cost-name">🎪 Vé Miền Du Mục & Cafe</div>
+                <div class="cost-sub">Vé vào cửa, Nước uống, Cà phê Túi Mơ To</div>
+            </div>
+            <div class="cost-inputs">
+                <div class="cost-est">Đoán: 500,000đ</div>
+                <input class="cost-real-input" type="number" id="cost_5" data-est="500000" placeholder="Thực tế đ" oninput="calcTotalCost()">
+            </div>
+        </div>
+
+        <div class="cost-item">
+            <div>
+                <div class="cost-name">🍓 Mua quà & Phát sinh khác</div>
+                <div class="cost-sub">Dâu tây tươi, Mứt sấy, Quà lưu niệm</div>
+            </div>
+            <div class="cost-inputs">
+                <div class="cost-est">Đoán: 450,000đ</div>
+                <input class="cost-real-input" type="number" id="cost_6" data-est="450000" placeholder="Thực tế đ" oninput="calcTotalCost()">
+            </div>
+        </div>
+    </div>
+
     <!-- MÓN ĂN DỰ PHÒNG -->
     <div id="food" class="content">
         <div class="timeline-card">
@@ -591,15 +698,48 @@
 </div>
 
 <script>
-    // PLAYLIST DƯA NHAU ĐI TRỐN
+    // TÍNH TOÁN VÀ TỰ ĐỘNG LƯU CHI PHÍ
+    function calcTotalCost() {
+        let estTotal = 0;
+        let realTotal = 0;
+
+        document.querySelectorAll('.cost-real-input').forEach(input => {
+            const estVal = parseInt(input.getAttribute('data-est')) || 0;
+            const realVal = parseInt(input.value) || 0;
+
+            estTotal += estVal;
+            realTotal += realVal;
+
+            // Lưu dữ liệu vào localStorage
+            localStorage.setItem(input.id, input.value);
+        });
+
+        document.getElementById('totalEst').innerText = estTotal.toLocaleString('vi-VN') + ' đ';
+        document.getElementById('totalReal').innerText = realTotal.toLocaleString('vi-VN') + ' đ';
+
+        const diff = realTotal - estTotal;
+        const diffBox = document.getElementById('diffVal');
+        
+        if (realTotal === 0) {
+            diffBox.innerText = '0 đ (Sẵn sàng)';
+            diffBox.style.color = '#34d399';
+        } else if (diff <= 0) {
+            diffBox.innerText = Math.abs(diff).toLocaleString('vi-VN') + ' đ (Tiết kiệm)';
+            diffBox.style.color = '#34d399';
+        } else {
+            diffBox.innerText = '+' + diff.toLocaleString('vi-VN') + ' đ (Vượt)';
+            diffBox.style.color = '#fca5a5';
+        }
+    }
+
+    // LIST NHẠC CDN KHÔNG BẢN QUYỀN CHẠY 100% ỔN ĐỊNH
     const playlist = [
-        { title: "Đưa Nhau Đi Trốn", artist: "Đen ft. Linh Cung (Lofi)", src: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" },
-        { title: "Bài Ca Tuổi Trẻ", artist: "Mây, Long, Tam Kê (Lofi)", src: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73111.mp3?filename=chill-lofi-song-10528.mp3" },
-        { title: "Đi Theo Bóng Mặt Trời", artist: "Đen ft. Giang Phạm (Lofi)", src: "https://cdn.pixabay.com/download/audio/2022/11/06/audio_c185121665.mp3?filename=lofi-chill-125434.mp3" }
+        { title: "Đưa Nhau Đi Trốn (Lofi Chill)", artist: "Đen ft. Linh Cáo • Nhạc Đi Đường", src: "https://ia801503.us.archive.org/15/items/lofi-chill-track/lofi.mp3" },
+        { title: "Bài Ca Tuổi Trẻ (Acoustic)", artist: "Mây, Long, Tam Kê • Lofi Mix", src: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73111.mp3?filename=chill-lofi-song-10528.mp3" }
     ];
-    let currentSong = 0;
+    let currentSongIndex = 0;
     let isPlaying = false;
-    const audio = document.getElementById('audioPlayer');
+    const audio = document.getElementById('mainAudioPlayer');
 
     function togglePlay() {
         if (isPlaying) {
@@ -613,18 +753,18 @@
                 document.getElementById('discIcon').classList.add('playing');
                 isPlaying = true;
             }).catch(e => {
-                alert('Bấm trực tiếp vào màn hình một cái rồi bấm lại nút Play nhé!');
+                alert('Chạm nhẹ vào màn hình 1 phát rồi bấm nút Play lại nhé!');
             });
         }
     }
 
     function nextSong() {
-        currentSong = (currentSong + 1) % playlist.length;
-        audio.src = playlist[currentSong].src;
-        document.getElementById('songTitle').innerText = playlist[currentSong].title;
-        document.getElementById('songArtist').innerText = playlist[currentSong].artist;
-        isPlaying = false;
-        togglePlay();
+        currentSongIndex = (currentSongIndex + 1) % playlist.length;
+        document.getElementById('songTitle').innerText = playlist[currentSongIndex].title;
+        document.getElementById('songArtist').innerText = playlist[currentSongIndex].artist;
+        audio.src = playlist[currentSongIndex].src;
+        audio.load();
+        if (isPlaying) audio.play();
     }
 
     function copyText(text) {
@@ -734,6 +874,14 @@
         fetchDaLatWeather();
         autoCheckTimeline();
         setInterval(autoCheckTimeline, 30000);
+
+        // Nạp lại chi phí đã lưu
+        document.querySelectorAll('.cost-real-input').forEach(input => {
+            if (localStorage.getItem(input.id)) {
+                input.value = localStorage.getItem(input.id);
+            }
+        });
+        calcTotalCost();
 
         ['pk1','pk2','pk3','pk4','pk5','pk_c1','pk_c2','pk_c3','pk_c5'].forEach(id => {
             if(localStorage.getItem(id) === 'true') {
