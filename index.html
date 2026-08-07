@@ -60,17 +60,17 @@
         .widget-val { font-weight: 800; font-size: 13px; color: #fff; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        /* MUSIC PLAYER WIDGET */
+        /* MUSIC PLAYER WIDGET FIX */
         .music-card {
             margin: 10px 20px 0;
-            background: rgba(17, 24, 39, 0.9);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(17, 24, 39, 0.95);
+            border: 1px solid rgba(245, 158, 11, 0.4);
             border-radius: 16px;
             padding: 10px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.15);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
         }
         .music-info { display: flex; align-items: center; gap: 10px; overflow: hidden; }
         .disc-icon { 
@@ -83,10 +83,11 @@
         }
         .disc-icon.playing { animation-play-state: running; }
         @keyframes spinDisc { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .song-title { font-size: 11px; font-weight: 800; color: #fef08a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 190px; }
+        .song-title { font-size: 11px; font-weight: 800; color: #fef08a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
         .song-artist { font-size: 10px; color: var(--text-muted); }
         .music-ctrls { display: flex; align-items: center; gap: 8px; }
-        .btn-play { background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); color: #f59e0b; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; }
+        .btn-play { background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.5); color: #f59e0b; width: 34px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; cursor: pointer; transition: 0.2s; }
+        .btn-play:active { transform: scale(0.9); background: #f59e0b; color: #030712; }
 
         /* WEATHER POPUP MODAL */
         .modal-overlay {
@@ -131,7 +132,7 @@
         .rain-low { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
         .rain-yes { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
 
-        /* TỐI ƯU THANH TABBAR KHÔNG BỊ TRÀN */
+        /* TỐI ƯU THANH TABBAR */
         .tabs-container { 
             margin: 15px 15px 0; 
             overflow-x: auto; 
@@ -279,13 +280,13 @@
             </div>
         </div>
 
-        <!-- MUSIC PLAYER WIDGET CHỦ ĐỀ ĐƯA NHAU ĐI TRỐN -->
+        <!-- MUSIC PLAYER FIX BẠN BẤM CHẠM VÀO LÀ PHÁT NGAY -->
         <div class="music-card">
             <div class="music-info">
                 <div class="disc-icon" id="discIcon"><i class="fa-solid fa-compact-disc"></i></div>
                 <div>
                     <div class="song-title" id="songTitle">Đưa Nhau Đi Trốn</div>
-                    <div class="song-artist" id="songArtist">Đen ft. Linh Cung • Lofi Chill</div>
+                    <div class="song-artist" id="songArtist">Đen ft. Linh Cung • Lofi Mix</div>
                 </div>
             </div>
             <div class="music-ctrls">
@@ -293,7 +294,7 @@
                 <button class="btn-play" onclick="nextSong()"><i class="fa-solid fa-forward-step"></i></button>
             </div>
         </div>
-        <audio id="audioPlayer" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+        <audio id="audioPlayer" preload="auto" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
     </div>
 
     <!-- WEATHER POPUP MODAL -->
@@ -590,7 +591,7 @@
 </div>
 
 <script>
-    // PLAYLIST DƯA NHAU ĐI TRỐN LOFI CHILL
+    // PLAYLIST DƯA NHAU ĐI TRỐN
     const playlist = [
         { title: "Đưa Nhau Đi Trốn", artist: "Đen ft. Linh Cung (Lofi)", src: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" },
         { title: "Bài Ca Tuổi Trẻ", artist: "Mây, Long, Tam Kê (Lofi)", src: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73111.mp3?filename=chill-lofi-song-10528.mp3" },
@@ -605,12 +606,16 @@
             audio.pause();
             document.getElementById('playBtn').innerHTML = '<i class="fa-solid fa-play"></i>';
             document.getElementById('discIcon').classList.remove('playing');
+            isPlaying = false;
         } else {
-            audio.play();
-            document.getElementById('playBtn').innerHTML = '<i class="fa-solid fa-pause"></i>';
-            document.getElementById('discIcon').classList.add('playing');
+            audio.play().then(() => {
+                document.getElementById('playBtn').innerHTML = '<i class="fa-solid fa-pause"></i>';
+                document.getElementById('discIcon').classList.add('playing');
+                isPlaying = true;
+            }).catch(e => {
+                alert('Bấm trực tiếp vào màn hình một cái rồi bấm lại nút Play nhé!');
+            });
         }
-        isPlaying = !isPlaying;
     }
 
     function nextSong() {
@@ -618,9 +623,8 @@
         audio.src = playlist[currentSong].src;
         document.getElementById('songTitle').innerText = playlist[currentSong].title;
         document.getElementById('songArtist').innerText = playlist[currentSong].artist;
-        if (isPlaying) {
-            audio.play();
-        }
+        isPlaying = false;
+        togglePlay();
     }
 
     function copyText(text) {
