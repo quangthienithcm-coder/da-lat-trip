@@ -3,134 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kim Chi & Quang Thiện - Da Lat Ultimate App</title>
-    <meta name="theme-color" content="#064e3b">
+    <title>Kim Chi & Quang Thiện - Cyber Travel Mate</title>
+    <meta name="theme-color" content="#030712">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #059669;
-            --primary-dark: #064e3b;
+            --primary: #10b981;
+            --primary-glow: #059669;
             --accent: #f59e0b;
-            --bg: #020617;
-            --card-bg: rgba(30, 41, 59, 0.75);
-            --card-border: rgba(255, 255, 255, 0.12);
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
+            --neon-blue: #06b6d4;
+            --bg: #030712;
+            --card-bg: rgba(17, 24, 39, 0.85);
+            --card-border: rgba(16, 185, 129, 0.25);
+            --text: #f9fafc;
+            --text-muted: #9ca3af;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; min-height: 100vh; }
-        .app { width: 100%; max-width: 430px; background: #020617; min-height: 100vh; position: relative; padding-bottom: 110px; }
+        .app { width: 100%; max-width: 430px; background: #030712; min-height: 100vh; position: relative; padding-bottom: 110px; border-left: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05); overflow-x: hidden; }
 
-        /* Hero Banner */
+        /* Hero Banner Neon */
         .hero {
-            background: linear-gradient(180deg, rgba(6, 78, 59, 0.85) 0%, rgba(2, 6, 23, 1) 100%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') center/cover;
+            background: linear-gradient(180deg, rgba(6, 78, 59, 0.9) 0%, rgba(3, 7, 18, 1) 100%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') center/cover;
             padding: 35px 20px 20px;
             border-bottom: 1px solid var(--card-border);
+            position: relative;
         }
-        .user-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(52, 211, 153, 0.15); backdrop-filter: blur(10px); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); margin-bottom: 10px; }
-        .hero h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+        .user-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.15); backdrop-filter: blur(12px); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4); text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); margin-bottom: 10px; }
+        .hero h1 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 0 12px rgba(16, 185, 129, 0.4); margin-bottom: 4px; }
         .hero p { font-size: 12px; color: var(--text-muted); }
 
-        /* Care Alert */
+        /* Care Alert Neon */
         .care-alert {
             margin: 12px 20px 0;
-            background: rgba(5, 150, 105, 0.15);
-            border: 1px solid rgba(52, 211, 153, 0.3);
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
             border-radius: 14px;
             padding: 10px 14px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 11px;
-            color: #a7f3d0;
+            color: #67e8f9;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.1);
         }
 
         /* Widgets Grid */
         .widgets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 20px 0; }
         .widget-box { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 10px; }
-        .widget-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(5, 150, 105, 0.2); color: #34d399; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-        .widget-val { font-weight: 800; font-size: 13px; }
+        .widget-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(16, 185, 129, 0.2); color: #34d399; display: flex; align-items: center; justify-content: center; font-size: 16px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
+        .widget-val { font-weight: 800; font-size: 13px; color: #fff; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        /* Tabs Navigation */
-        .tabs-container { margin: 15px 20px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        /* TỐI ƯU THANH TABBAR KHÔNG BỊ TRÀN / LỖI CHỮ */
+        .tabs-container { 
+            margin: 15px 15px 0; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
+            scrollbar-width: none;
+            padding-bottom: 5px;
+        }
         .tabs-container::-webkit-scrollbar { display: none; }
-        .tabs { display: flex; gap: 4px; background: rgba(30, 41, 59, 0.6); padding: 4px; border-radius: 14px; border: 1px solid var(--card-border); min-width: max-content; }
-        .tab { padding: 10px 12px; text-align: center; border: none; background: transparent; color: var(--text-muted); font-size: 11px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: 0.3s; white-space: nowrap; }
-        .tab.active { background: var(--primary) !important; color: white !important; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4); }
+        .tabs { 
+            display: inline-flex; 
+            gap: 6px; 
+            background: rgba(17, 24, 39, 0.9); 
+            padding: 6px; 
+            border-radius: 16px; 
+            border: 1px solid var(--card-border); 
+            min-width: 100%;
+        }
+        .tab { 
+            flex: 1;
+            padding: 8px 12px; 
+            text-align: center; 
+            border: none; 
+            background: transparent; 
+            color: var(--text-muted); 
+            font-size: 11px; 
+            font-weight: 800; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            white-space: nowrap; 
+            text-transform: uppercase;
+        }
+        .tab.active { 
+            background: var(--primary) !important; 
+            color: #030712 !important; 
+            font-weight: 800; 
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6); 
+        }
 
         /* Content Sections */
         .content { padding: 15px 20px 0; display: none; }
         .content.active { display: block !important; }
         
-        .timeline-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; backdrop-filter: blur(10px); transition: all 0.3s ease; }
-        .timeline-card.done { opacity: 0.4; filter: grayscale(0.8); transform: scale(0.98); }
+        .timeline-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; backdrop-filter: blur(10px); transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .timeline-card.done { opacity: 0.35; filter: grayscale(1); transform: scale(0.98); }
 
         .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .time { font-size: 11px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.12); padding: 4px 8px; border-radius: 6px; }
+        .time { font-size: 11px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.12); padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(52, 211, 153, 0.2); }
         .tag { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.08); color: var(--text-muted); }
-        .tag.hot { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .tag.hot { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
 
-        .card-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
+        .card-title { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
         .card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px; }
 
-        .outfit-box { background: rgba(245, 158, 11, 0.1); border: 1px dashed rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 8px 10px; font-size: 11px; color: #fef08a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .outfit-box { background: rgba(245, 158, 11, 0.1); border: 1px dashed rgba(245, 158, 11, 0.4); border-radius: 10px; padding: 8px 10px; font-size: 11px; color: #fef08a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
 
-        .btn-nav { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--card-border); border-radius: 12px; color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; }
-        .btn-nav:active { background: var(--primary); }
+        .btn-nav { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 12px; color: #fff; font-size: 12px; font-weight: 800; text-decoration: none; transition: 0.2s; }
+        .btn-nav:active { background: var(--primary); color: #030712; }
 
         .check-btn { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; transition: 0.2s; }
         .timeline-card.done .check-btn { color: #34d399; transform: scale(1.1); }
 
-        /* ANIMATED SCOOTER MAP STYLING */
+        /* ANIMATED CYBER SCOOTER MAP */
         .map-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 16px; backdrop-filter: blur(10px); }
-        .map-title { font-size: 14px; font-weight: 800; color: #34d399; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .map-title { font-size: 13px; font-weight: 800; color: #34d399; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
         .route-flow { display: flex; flex-direction: column; gap: 14px; position: relative; padding-left: 24px; }
         
-        .route-flow::before { content: ''; position: absolute; left: 7px; top: 12px; bottom: 12px; width: 3px; background: rgba(52, 211, 153, 0.3); border-radius: 3px; }
+        .route-flow::before { content: ''; position: absolute; left: 7px; top: 12px; bottom: 12px; width: 3px; background: rgba(16, 185, 129, 0.3); border-radius: 3px; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
         
-        /* Moving Bike Icon Animation */
+        /* Cyber Neon Bike Animation */
         .moving-bike {
             position: absolute;
-            left: -3px;
+            left: -4px;
             top: 0;
             color: #f59e0b;
-            font-size: 16px;
+            font-size: 18px;
             z-index: 5;
-            animation: moveBike 7s infinite linear;
-            filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.8));
+            animation: moveCyberBike 6s infinite linear;
+            filter: drop-shadow(0 0 8px #f59e0b);
         }
 
-        @keyframes moveBike {
-            0% { top: 0%; }
-            100% { top: 90%; }
+        @keyframes moveCyberBike {
+            0% { top: 0%; transform: rotate(0deg); }
+            100% { top: 90%; transform: rotate(0deg); }
         }
 
-        .route-step { position: relative; font-size: 12px; color: #f8fafc; display: flex; align-items: center; justify-content: space-between; }
-        .route-step::before { content: ''; position: absolute; left: -21px; width: 9px; height: 9px; border-radius: 50%; background: var(--primary); border: 2px solid #020617; z-index: 2; }
-        .route-dist { font-size: 10px; color: var(--accent); font-weight: 700; background: rgba(245, 158, 11, 0.1); padding: 2px 6px; border-radius: 4px; }
+        .route-step { position: relative; font-size: 12px; color: #f8fafc; display: flex; align-items: center; justify-content: space-between; font-weight: 600; }
+        .route-step::before { content: ''; position: absolute; left: -21px; width: 9px; height: 9px; border-radius: 50%; background: var(--primary); border: 2px solid #030712; box-shadow: 0 0 6px var(--primary); z-index: 2; }
+        .route-dist { font-size: 10px; color: var(--accent); font-weight: 800; background: rgba(245, 158, 11, 0.1); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.2); }
 
         /* Checklist Style */
-        .pack-section-title { font-size: 12px; font-weight: 800; color: #34d399; text-transform: uppercase; margin: 12px 0 8px; letter-spacing: 0.5px; }
-        .pack-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 8px; font-size: 13px; }
+        .pack-section-title { font-size: 11px; font-weight: 800; color: #34d399; text-transform: uppercase; margin: 12px 0 8px; letter-spacing: 1px; }
+        .pack-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
         .pack-item input { width: 18px; height: 18px; accent-color: var(--primary); }
         .note-area { width: 100%; height: 90px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; color: #fff; font-size: 13px; resize: none; outline: none; margin-top: 8px; }
 
-        /* Secret Love Banner */
-        .love-card { background: linear-gradient(135deg, rgba(225, 29, 72, 0.2), rgba(159, 18, 57, 0.2)); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 18px; padding: 16px; margin-top: 15px; text-align: center; }
-        .love-card h4 { color: #fda4af; font-size: 14px; margin-bottom: 6px; }
+        /* Secret Love Banner Neon */
+        .love-card { background: linear-gradient(135deg, rgba(225, 29, 72, 0.15), rgba(159, 18, 57, 0.15)); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 18px; padding: 16px; margin-top: 15px; text-align: center; box-shadow: 0 0 15px rgba(244, 63, 94, 0.15); }
+        .love-card h4 { color: #fda4af; font-size: 14px; margin-bottom: 6px; font-weight: 800; }
         .love-card p { font-size: 12px; color: #fecdd3; font-style: italic; line-height: 1.5; }
 
-        /* Floating Bottom Nav */
-        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--card-border); padding: 10px 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; z-index: 100; }
-        .btn-action { padding: 10px 4px; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--card-border); border-radius: 12px; color: white; font-weight: 700; font-size: 11px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; text-align: center; }
-        .btn-gas { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3); color: #f59e0b; }
-        .btn-sos { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5; }
-        .btn-primary { background: linear-gradient(135deg, #059669, #10b981); border: none; }
+        /* Floating Bottom Nav Cyber */
+        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--card-border); padding: 10px 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; z-index: 100; }
+        .btn-action { padding: 10px 4px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--card-border); border-radius: 12px; color: white; font-weight: 800; font-size: 11px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; text-align: center; transition: 0.2s; }
+        .btn-gas { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.2); }
+        .btn-sos { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #fca5a5; box-shadow: 0 0 8px rgba(239, 68, 68, 0.2); }
+        .btn-primary { background: var(--primary); color: #030712; border: none; box-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
     </style>
 </head>
 <body>
@@ -138,27 +174,27 @@
 <div class="app">
     <!-- Hero Header -->
     <div class="hero">
-        <div class="user-badge"><i class="fa-solid fa-heart"></i> Kim Chi & Quang Thiện</div>
+        <div class="user-badge"><i class="fa-solid fa-bolt"></i> Kim Chi & Quang Thiện</div>
         <h1>ĐÀ NẴNG ➔ ĐÀ LẠT</h1>
-        <p><i class="fa-regular fa-calendar-check"></i> 07/08 – 09/08 | Ultimate Assistant</p>
+        <p><i class="fa-solid fa-bus"></i> Xe Tân Kim Chi | <i class="fa-solid fa-hotel"></i> KS The Grace</p>
 
         <!-- Care Alert -->
         <div class="care-alert">
-            <i class="fa-solid fa-shield-heart"></i>
-            <div><b>Mẹo giữ sức khỏe:</b> Đà Lạt lạnh chiều, giữ ấm cơ thể & chuẩn bị trà gừng ấm đi đường nhé!</div>
+            <i class="fa-solid fa-shield-halved"></i>
+            <div><b>Lưu ý di chuyển:</b> Giữ ấm đèo dốc chiều lạnh & nhớ chuẩn bị sẵn trà gừng ấm nhé!</div>
         </div>
 
         <!-- Widgets -->
         <div class="widgets-grid">
             <div class="widget-box">
-                <div class="widget-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="widget-icon"><i class="fa-solid fa-stopwatch"></i></div>
                 <div>
                     <div class="widget-val" id="countdown">00:00:00</div>
-                    <div class="widget-lbl">Đếm ngược khởi hành</div>
+                    <div class="widget-lbl">Đếm ngược giờ đi</div>
                 </div>
             </div>
             <div class="widget-box">
-                <div class="widget-icon"><i class="fa-solid fa-temperature-three-quarters"></i></div>
+                <div class="widget-icon"><i class="fa-solid fa-temperature-arrow-down"></i></div>
                 <div>
                     <div class="widget-val">15°C - 22°C</div>
                     <div class="widget-lbl">Đà Lạt Se Lạnh</div>
@@ -181,9 +217,9 @@
     <!-- NGÀY 1 -->
     <div id="d1" class="content active">
         <div class="timeline-card" id="c1">
-            <div class="card-top"><span class="time">05:00 - 07:00</span><span class="tag">Săn mây</span></div>
-            <div class="card-title">Thác Mây & Chill <button class="check-btn" onclick="toggleDone('c1')"><i class="fa-regular fa-circle-check"></i></button></div>
-            <div class="card-desc">Cất đồ, nhận xe máy. Ngắm sương mờ và bình minh vờn qua đồi thông.</div>
+            <div class="card-top"><span class="time">05:00 - 07:00</span><span class="tag">Khách sạn & Săn mây</span></div>
+            <div class="card-title">Cất đồ KS The Grace ➔ Thác Mây <button class="check-btn" onclick="toggleDone('c1')"><i class="fa-regular fa-circle-check"></i></button></div>
+            <div class="card-desc">Xe Tân Kim Chi trung chuyển tới KS The Grace (51 Nam Kỳ Khởi Nghĩa) gửi đồ miễn phí, nhận xe máy rồi đi săn mây Thác Mây.</div>
             <div class="outfit-box"><i class="fa-solid fa-shirt"></i> Outfit gợi ý: Áo khoác ấm + Khăn len (Sáng sớm lạnh ~15°C)</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Thác+Mây+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
@@ -211,10 +247,10 @@
         </div>
 
         <div class="timeline-card" id="c4">
-            <div class="card-top"><span class="time">12:00 - 13:30</span><span class="tag">Ăn trưa</span></div>
-            <div class="card-title">Sườn Cay / Khap Bun Kha <button class="check-btn" onclick="toggleDone('c4')"><i class="fa-regular fa-circle-check"></i></button></div>
-            <div class="card-desc">Sườn cay khổng lồ (42 Phan Chu Trinh) hoặc Lẩu Thái Khap Bun Kha (26 Nguyễn Văn Cừ).</div>
-            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=42+Phan+Chu+Trinh+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+            <div class="card-top"><span class="time">12:00 - 13:30</span><span class="tag">Ăn trưa & Check-in KS</span></div>
+            <div class="card-title">Sườn Cay ➔ Nhận Phòng KS The Grace <button class="check-btn" onclick="toggleDone('c4')"><i class="fa-regular fa-circle-check"></i></button></div>
+            <div class="card-desc">Ăn trưa Sườn cay (42 Phan Chu Trinh) hoặc Lẩu Thái (26 Nguyễn Văn Cừ) rồi về KS The Grace (51 Nam Kỳ Khởi Nghĩa) nhận phòng nghỉ ngơi.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt" target="_blank"><i class="fa-solid fa-hotel"></i> Đường về KS The Grace</a>
         </div>
 
         <div class="timeline-card" id="c5" style="border-color: rgba(245, 158, 11, 0.4);">
@@ -228,7 +264,7 @@
         <div class="timeline-card" id="c6">
             <div class="card-top"><span class="time">18:30 - 21:00</span><span class="tag">Ăn tối</span></div>
             <div class="card-title">BBQ Nướng & Chợ Đêm <button class="check-btn" onclick="toggleDone('c6')"><i class="fa-regular fa-circle-check"></i></button></div>
-            <div class="card-desc">Đồ nướng nóng hổi, sữa đậu nành nóng & dạo không khí chợ đêm.</div>
+            <div class="card-desc">Đồ nướng nóng hổi, sữa đậu nành nóng & dạo không khí chợ đêm (Ngay sát KS The Grace đi bộ rất tiện).</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Chợ+Đêm+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
     </div>
@@ -265,43 +301,42 @@
         </div>
 
         <div class="timeline-card" id="c11">
-            <div class="card-top"><span class="time">12:00 - 14:00</span><span class="tag">Kết thúc</span></div>
-            <div class="card-title">Lẩu Gà Lá É ➔ Trả Phòng <button class="check-btn" onclick="toggleDone('c11')"><i class="fa-regular fa-circle-check"></i></button></div>
-            <div class="card-desc">Ăn trưa lẩu gà Tao Ngộ, mua mứt sấy, về trả phòng & xe khởi hành về Đà Nẵng.</div>
-            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Lẩu+gà+lá+é+Tao+Ngộ+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+            <div class="card-top"><span class="time">12:00 - 14:00</span><span class="tag">Trả Phòng & Về ĐN</span></div>
+            <div class="card-title">Lẩu Gà Lá É ➔ Bến Xe Liên Tỉnh <button class="check-btn" onclick="toggleDone('c11')"><i class="fa-regular fa-circle-check"></i></button></div>
+            <div class="card-desc">Ăn trưa lẩu gà Tao Ngộ ➔ Về KS The Grace trả phòng & xe máy ➔ Di chuyển ra Bến xe Liên tỉnh Đà Lạt về lại Đà Nẵng.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Bến+xe+liên+tỉnh+Đà+Lạt" target="_blank"><i class="fa-solid fa-bus"></i> Đường ra Bến Xe Liên Tỉnh</a>
         </div>
     </div>
 
-    <!-- TAB BẢN ĐỒ CÓ XE MÁY CHẠY HOẠT HÌNH -->
+    <!-- TAB BẢN ĐỒ CYBER SCOOTER -->
     <div id="mapTab" class="content">
         <div class="map-section">
-            <div class="map-title"><i class="fa-solid fa-motorcycle"></i> Lộ Trình Ngày 1 (Cụm Suối Vàng ➔ Trại Mát)</div>
+            <div class="map-title"><i class="fa-solid fa-motorcycle"></i> Lộ Trình Ngày 1 (KS The Grace ➔ Suối Vàng ➔ Trại Mát)</div>
             <div class="route-flow">
                 <i class="fa-solid fa-motorcycle moving-bike"></i>
-                <div class="route-step"><span>1. Thác Mây (Săn Mây)</span><span class="route-dist">Xuất phát</span></div>
-                <div class="route-step"><span>2. Bánh mì xíu mại 79</span><span class="route-dist">~6 km</span></div>
-                <div class="route-step"><span>3. Đồi Măng Lin</span><span class="route-dist">~8 km</span></div>
-                <div class="route-step"><span>4. Hồ Suối Vàng</span><span class="route-dist">~7 km</span></div>
-                <div class="route-step"><span>5. Ăn Trưa (42 Phan Chu Trinh)</span><span class="route-dist">~15 km</span></div>
-                <div class="route-step"><span>6. Miền Du Mục (Hoàng Hôn)</span><span class="route-dist">~8 km</span></div>
-                <div class="route-step"><span>7. Chợ Đêm Đà Lạt</span><span class="route-dist">~7 km</span></div>
+                <div class="route-step"><span>1. KS The Grace (51 Nam Kỳ Khởi Nghĩa)</span><span class="route-dist">Start</span></div>
+                <div class="route-step"><span>2. Thác Mây (Săn Mây)</span><span class="route-dist">~12 km</span></div>
+                <div class="route-step"><span>3. Bánh mì xíu mại 79</span><span class="route-dist">~6 km</span></div>
+                <div class="route-step"><span>4. Đồi Măng Lin & Suối Vàng</span><span class="route-dist">~15 km</span></div>
+                <div class="route-step"><span>5. Miền Du Mục (Hoàng Hôn)</span><span class="route-dist">~18 km</span></div>
+                <div class="route-step"><span>6. Về KS The Grace & Chợ Đêm</span><span class="route-dist">~7 km</span></div>
             </div>
-            <a class="btn-nav" style="margin-top: 15px; background: rgba(5, 150, 105, 0.2); color: #34d399; border-color: rgba(52, 211, 153, 0.3);" href="https://www.google.com/maps/dir/Thác+Mây+Đà+Lạt/1+Thông+Thiên+Học+Đà+Lạt/Đồi+Măng+Lin+Đà+Lạt/Hồ+Suối+Vàng+Đà+Lạt/42+Phan+Chu+Trinh+Đà+Lạt/Miền+Du+Mục+Đà+Lạt/Chợ+Đêm+Đà+Lạt" target="_blank">
+            <a class="btn-nav" style="margin-top: 15px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.4);" href="https://www.google.com/maps/dir/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Thác+Mây+Đà+Lạt/1+Thông+Thiên+Học+Đà+Lạt/Đồi+Măng+Lin+Đà+Lạt/Hồ+Suối+Vàng+Đà+Lạt/Miền+Du+Mục+Đà+Lạt/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt" target="_blank">
                 <i class="fa-solid fa-map-location-dot"></i> Bật Bản Đồ Toàn Tuyến Ngày 1
             </a>
         </div>
 
         <div class="map-section">
-            <div class="map-title"><i class="fa-solid fa-motorcycle"></i> Lộ Trình Ngày 2 (Cầu Đất ➔ Trung Tâm)</div>
+            <div class="map-title"><i class="fa-solid fa-motorcycle"></i> Lộ Trình Ngày 2 (KS The Grace ➔ Cầu Đất ➔ Bến Xe)</div>
             <div class="route-flow">
                 <i class="fa-solid fa-motorcycle moving-bike"></i>
-                <div class="route-step"><span>1. Đồi chè Cầu Đất (Săn Mây)</span><span class="route-dist">Xuất phát</span></div>
-                <div class="route-step"><span>2. Bánh Căn Lệ (Yersin)</span><span class="route-dist">~22 km</span></div>
-                <div class="route-step"><span>3. Cafe Túi Mơ To</span><span class="route-dist">~5 km</span></div>
-                <div class="route-step"><span>4. Quảng Trường Lâm Viên</span><span class="route-dist">~6 km</span></div>
-                <div class="route-step"><span>5. Lẩu Gà Lá É Tao Ngộ</span><span class="route-dist">~2 km</span></div>
+                <div class="route-step"><span>1. KS The Grace</span><span class="route-dist">Start</span></div>
+                <div class="route-step"><span>2. Đồi chè Cầu Đất (Săn Mây)</span><span class="route-dist">~24 km</span></div>
+                <div class="route-step"><span>3. Bánh Căn Lệ & Cafe Túi Mơ To</span><span class="route-dist">~20 km</span></div>
+                <div class="route-step"><span>4. Về KS The Grace trả phòng</span><span class="route-dist">~5 km</span></div>
+                <div class="route-step"><span>5. Bến Xe Liên Tỉnh Đà Lạt</span><span class="route-dist">~3 km</span></div>
             </div>
-            <a class="btn-nav" style="margin-top: 15px; background: rgba(5, 150, 105, 0.2); color: #34d399; border-color: rgba(52, 211, 153, 0.3);" href="https://www.google.com/maps/dir/Đồi+Chè+Cầu+Đất+Đà+Lạt/Bánh+Căn+Lệ+Yersin+Đà+Lạt/Tiệm+cà+phê+Túi+Mơ+To+Đà+Lạt/Quảng+Trường+Lâm+Viên/Lẩu+gà+lá+é+Tao+Ngộ+Đà+Lạt" target="_blank">
+            <a class="btn-nav" style="margin-top: 15px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.4);" href="https://www.google.com/maps/dir/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Đồi+Chè+Cầu+Đất+Đà+Lạt/Bánh+Căn+Lệ+Yersin+Đà+Lạt/Tiệm+cà+phê+Túi+Mơ+To+Đà+Lạt/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Bến+xe+liên+tỉnh+Đà+Lạt" target="_blank">
                 <i class="fa-solid fa-map-location-dot"></i> Bật Bản Đồ Toàn Tuyến Ngày 2
             </a>
         </div>
@@ -343,8 +378,8 @@
         <div class="pack-item"><span>👗 Trang phục chụp ảnh</span><input type="checkbox" id="pk4" onclick="saveCheck('pk4')"></div>
         <div class="pack-item"><span>🔋 Sạc dự phòng + Chân máy</span><input type="checkbox" id="pk5" onclick="saveCheck('pk5')"></div>
 
-        <div style="margin-top: 15px; font-weight: 700; font-size: 13px;">📝 Ghi Chú Nhanh (SĐT Khách sạn, Biển số xe):</div>
-        <textarea class="note-area" id="tripNote" placeholder="Ghi biển số xe thuê, số phòng khách sạn..." oninput="saveNote()"></textarea>
+        <div style="margin-top: 15px; font-weight: 700; font-size: 13px;">📝 Ghi Chú Nhanh (KS The Grace - 51 Nam Kỳ Khởi Nghĩa):</div>
+        <textarea class="note-area" id="tripNote" placeholder="Ghi biển số xe thuê, mã đặt vé Tân Kim Chi..." oninput="saveNote()"></textarea>
 
         <!-- Secret Love Note -->
         <div class="love-card">
@@ -353,7 +388,7 @@
         </div>
     </div>
 
-    <!-- Bottom Action Bar -->
+    <!-- Bottom Action Bar Cyber -->
     <div class="bottom-nav">
         <a class="btn-action btn-gas" href="https://www.google.com/maps/search/?api=1&query=gas+station" target="_blank">
             <i class="fa-solid fa-gas-pump"></i> Cây Xăng
@@ -361,8 +396,8 @@
         <a class="btn-action btn-sos" href="https://www.google.com/maps/search/?api=1&query=tiệm+sửa+xe+máy" target="_blank">
             <i class="fa-solid fa-wrench"></i> Cứu Hộ Xe
         </a>
-        <a class="btn-action btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=Chợ+Đà+Lạt" target="_blank">
-            <i class="fa-solid fa-compass"></i> Về Trung Tâm
+        <a class="btn-action btn-primary" href="https://www.google.com/maps/search/?api=1&query=51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt" target="_blank">
+            <i class="fa-solid fa-hotel"></i> Về KS The Grace
         </a>
     </div>
 </div>
