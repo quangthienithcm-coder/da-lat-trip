@@ -60,36 +60,6 @@
         .widget-val { font-weight: 800; font-size: 13px; color: #fff; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        /* MUSIC PLAYER WIDGET */
-        .music-card {
-            margin: 10px 20px 0;
-            background: rgba(17, 24, 39, 0.95);
-            border: 1px solid rgba(245, 158, 11, 0.4);
-            border-radius: 16px;
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
-        }
-        .music-info { display: flex; align-items: center; gap: 10px; overflow: hidden; }
-        .disc-icon { 
-            width: 34px; height: 34px; border-radius: 50%; 
-            background: linear-gradient(135deg, #f59e0b, #ef4444); 
-            display: flex; align-items: center; justify-content: center; 
-            color: #030712; font-size: 14px;
-            animation: spinDisc 4s linear infinite;
-            animation-play-state: paused;
-        }
-        .disc-icon.playing { animation-play-state: running; }
-        @keyframes spinDisc { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .song-title { font-size: 11px; font-weight: 800; color: #fef08a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 155px; }
-        .song-artist { font-size: 10px; color: var(--text-muted); }
-        .music-ctrls { display: flex; align-items: center; gap: 6px; }
-        .btn-play { background: rgba(245, 158, 11, 0.25); border: 1px solid rgba(245, 158, 11, 0.5); color: #f59e0b; width: 34px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; cursor: pointer; transition: 0.2s; }
-        .btn-play:active { transform: scale(0.9); background: #f59e0b; color: #030712; }
-        .btn-link { background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; width: 34px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 13px; text-decoration: none; }
-
         /* WEATHER POPUP MODAL */
         .modal-overlay {
             position: fixed;
@@ -296,24 +266,8 @@
             </div>
         </div>
 
-        <!-- MUSIC PLAYER AUDIO MULTI-SOURCE -->
-        <div class="music-card">
-            <div class="music-info">
-                <div class="disc-icon" id="discIcon"><i class="fa-solid fa-compact-disc"></i></div>
-                <div>
-                    <div class="song-title" id="songTitle">Đưa Nhau Đi Trốn (Lofi Chill)</div>
-                    <div class="song-artist" id="songArtist">Đen ft. Linh Cáo • Nhạc Đi Đường</div>
-                </div>
-            </div>
-            <div class="music-ctrls">
-                <button class="btn-play" id="playBtn" onclick="togglePlay()"><i class="fa-solid fa-play"></i></button>
-                <button class="btn-play" onclick="nextSong()"><i class="fa-solid fa-forward-step"></i></button>
-                <a class="btn-link" href="https://zingmp3.vn/tim-kiem/tat-ca?q=Dua%20Nhau%20Di%20Tron%20Den" target="_blank" title="Mở Zing MP3 Bài Gốc"><i class="fa-solid fa-music"></i></a>
-            </div>
-        </div>
-        <!-- Audio HTML5: Ưu tiên file local duanhauditron.mp3 nếu upload chung -->
-        <audio id="mainAudioPlayer" preload="auto">
-            <source src="duanhauditron.mp3" type="audio/mpeg">
+        <!-- NHẠC LOFI NỀN TỰ ĐỘNG CHẠY NGẦM KHÔNG CẦN BẬT / LẶP VÔ TẬN -->
+        <audio id="bgAudio" loop preload="auto">
             <source src="https://ia801503.us.archive.org/15/items/lofi-chill-track/lofi.mp3" type="audio/mpeg">
         </audio>
     </div>
@@ -699,41 +653,18 @@
 </div>
 
 <script>
-    // BỘ PHÁT NHẠC
-    const playlist = [
-        { title: "Đưa Nhau Đi Trốn (Lofi Chill)", artist: "Đen ft. Linh Cáo • Nhạc Đi Đường", src: "https://ia801503.us.archive.org/15/items/lofi-chill-track/lofi.mp3" },
-        { title: "Bài Ca Tuổi Trẻ (Acoustic)", artist: "Mây, Long, Tam Kê • Lofi Mix", src: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73111.mp3?filename=chill-lofi-song-10528.mp3" }
-    ];
-    let currentSongIndex = 0;
-    let isPlaying = false;
-    const audio = document.getElementById('mainAudioPlayer');
-
-    function togglePlay() {
-        if (isPlaying) {
-            audio.pause();
-            document.getElementById('playBtn').innerHTML = '<i class="fa-solid fa-play"></i>';
-            document.getElementById('discIcon').classList.remove('playing');
-            isPlaying = false;
-        } else {
-            audio.play().then(() => {
-                document.getElementById('playBtn').innerHTML = '<i class="fa-solid fa-pause"></i>';
-                document.getElementById('discIcon').classList.add('playing');
-                isPlaying = true;
-            }).catch(e => {
-                // Nếu trình duyệt chặn, mở Zing MP3 ngay lập tức làm phương án 2
-                window.open('https://zingmp3.vn/tim-kiem/tat-ca?q=Dua%20Nhau%20Di%20Tron%20Den', '_blank');
-            });
+    // KÍCH HOẠT NHẠC NỀN CHẠY NGẦM TỰ ĐỘNG KHI CÓ TƯƠNG TÁC ĐẦU TIÊN
+    const bgAudio = document.getElementById('bgAudio');
+    function startBgMusic() {
+        if (bgAudio && bgAudio.paused) {
+            bgAudio.play().then(() => {
+                document.removeEventListener('click', startBgMusic);
+                document.removeEventListener('touchstart', startBgMusic);
+            }).catch(e => console.log('Chờ tương tác để phát nhạc'));
         }
     }
-
-    function nextSong() {
-        currentSongIndex = (currentSongIndex + 1) % playlist.length;
-        document.getElementById('songTitle').innerText = playlist[currentSongIndex].title;
-        document.getElementById('songArtist').innerText = playlist[currentSongIndex].artist;
-        audio.src = playlist[currentSongIndex].src;
-        audio.load();
-        if (isPlaying) audio.play();
-    }
+    document.addEventListener('click', startBgMusic);
+    document.addEventListener('touchstart', startBgMusic);
 
     function calcTotalCost() {
         let estTotal = 0;
