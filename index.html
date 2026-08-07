@@ -26,6 +26,32 @@
         body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; min-height: 100vh; }
         .app { width: 100%; max-width: 430px; background: #030712; min-height: 100vh; position: relative; padding-bottom: 110px; border-left: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05); overflow-x: hidden; }
 
+        /* Floating Music Button */
+        .music-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--primary);
+            color: #34d399;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 50;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+        .music-toggle.playing {
+            animation: spin 4s linear infinite;
+            background: var(--primary);
+            color: #030712;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
         /* Hero Banner Neon */
         .hero {
             background: linear-gradient(180deg, rgba(6, 78, 59, 0.9) 0%, rgba(3, 7, 18, 1) 100%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') center/cover;
@@ -59,6 +85,19 @@
         .widget-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(16, 185, 129, 0.2); color: #34d399; display: flex; align-items: center; justify-content: center; font-size: 16px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
         .widget-val { font-weight: 800; font-size: 13px; color: #fff; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
+
+        /* Sun Info Bar */
+        .sun-bar {
+            margin: 10px 20px 0;
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #fef08a;
+        }
 
         /* WEATHER POPUP MODAL */
         .modal-overlay {
@@ -103,7 +142,7 @@
         .rain-low { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
         .rain-yes { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
 
-        /* TỐI ƯU THANH TABBAR BAR 6 TABS */
+        /* TABBAR */
         .tabs-container { 
             margin: 15px 15px 0; 
             overflow-x: auto; 
@@ -174,6 +213,7 @@
         .cost-sum-lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
         
         .diff-box { grid-column: span 2; background: rgba(245, 158, 11, 0.1); border: 1px border rgba(245, 158, 11, 0.3); padding: 8px; border-radius: 10px; font-size: 12px; font-weight: 800; color: #fef08a; display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; }
+        .split-box { grid-column: span 2; background: rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.4); padding: 8px 14px; border-radius: 10px; font-size: 12px; font-weight: 800; color: #67e8f9; display: flex; justify-content: space-between; align-items: center; }
 
         .cost-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
         .cost-name { font-size: 12px; font-weight: 700; color: #fff; }
@@ -182,14 +222,13 @@
         .cost-est { font-size: 11px; color: #34d399; font-weight: 700; }
         .cost-real-input { width: 90px; background: rgba(0,0,0,0.4); border: 1px solid var(--card-border); border-radius: 8px; padding: 6px 8px; color: #fef08a; font-size: 12px; font-weight: 800; text-align: right; outline: none; }
 
-        /* ANIMATED CYBER SCOOTER MAP */
+        /* MAP */
         .map-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 16px; backdrop-filter: blur(10px); }
         .map-title { font-size: 13px; font-weight: 800; color: #34d399; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
         .route-flow { display: flex; flex-direction: column; gap: 16px; position: relative; padding-left: 24px; }
         
         .route-flow::before { content: ''; position: absolute; left: 7px; top: 12px; bottom: 12px; width: 3px; background: rgba(16, 185, 129, 0.3); border-radius: 3px; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
         
-        /* Cyber Neon Bike Animation */
         .moving-bike {
             position: absolute;
             left: -4px;
@@ -219,7 +258,7 @@
         .pack-item input { width: 18px; height: 18px; accent-color: var(--primary); }
         .note-area { width: 100%; height: 90px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; color: #fff; font-size: 13px; resize: none; outline: none; margin-top: 8px; }
 
-        /* Secret Love Banner Neon */
+        /* Love Banner */
         .love-card { background: linear-gradient(135deg, rgba(225, 29, 72, 0.15), rgba(159, 18, 57, 0.15)); border: 1px solid rgba(244, 63, 94, 0.4); border-radius: 18px; padding: 16px; margin-top: 15px; text-align: center; box-shadow: 0 0 15px rgba(244, 63, 94, 0.15); }
         .love-card h4 { color: #fda4af; font-size: 14px; margin-bottom: 6px; font-weight: 800; }
         .love-card p { font-size: 12px; color: #fecdd3; font-style: italic; line-height: 1.5; }
@@ -237,6 +276,7 @@
 <div class="app">
     <!-- Hero Header -->
     <div class="hero">
+        <button class="music-toggle" id="musicBtn" onclick="toggleAudio()"><i class="fa-solid fa-music"></i></button>
         <div class="user-badge"><i class="fa-solid fa-bolt"></i> Kim Chi & Quang Thiện</div>
         <h1>ĐÀ NẴNG ➔ ĐÀ LẠT</h1>
         <p><i class="fa-solid fa-bus"></i> Xe Tân Kim Chi | <i class="fa-solid fa-hotel"></i> KS The Grace</p>
@@ -256,7 +296,6 @@
                     <div class="widget-lbl">Đếm ngược giờ đi</div>
                 </div>
             </div>
-            <!-- DYNAMIC WEATHER WIDGET WITH CLICK EVENT -->
             <div class="widget-box" onclick="openWeatherModal()">
                 <div class="widget-icon" id="weatherIcon"><i class="fa-solid fa-cloud-sun"></i></div>
                 <div>
@@ -266,7 +305,12 @@
             </div>
         </div>
 
-        <!-- NHẠC LOFI NỀN TỰ ĐỘNG CHẠY NGẦM KHÔNG CẦN BẬT / LẶP VÔ TẬN -->
+        <!-- Sun Info Bar -->
+        <div class="sun-bar">
+            <span><i class="fa-solid fa-sun-plant-wilt"></i> Bình minh: <b>05:40</b></span>
+            <span><i class="fa-solid fa-mountain-sun"></i> Hoàng hôn: <b>17:55</b></span>
+        </div>
+
         <audio id="bgAudio" loop preload="auto">
             <source src="https://ia801503.us.archive.org/15/items/lofi-chill-track/lofi.mp3" type="audio/mpeg">
         </audio>
@@ -279,7 +323,7 @@
                 <h3><i class="fa-solid fa-cloud-showers-heavy"></i> Dự Báo Mưa Theo Giờ</h3>
                 <button class="close-btn" onclick="closeWeatherModal()"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="hourly-list">
+            <div class="hourly-list" id="hourlyWeatherList">
                 <div class="hourly-item">
                     <span class="hourly-time">05:00 - 08:00</span>
                     <span class="hourly-status"><i class="fa-solid fa-cloud-sun" style="color: #34d399;"></i> Sương mờ</span>
@@ -521,6 +565,10 @@
                 <span>Chênh Lệch Thực Tế:</span>
                 <span id="diffVal" style="color: #34d399;">0 đ (Dư)</span>
             </div>
+            <div class="split-box">
+                <span>Mỗi Người (Chia đôi):</span>
+                <span id="perPersonVal">0 đ / người</span>
+            </div>
         </div>
 
         <div class="pack-section-title">📊 Chi Tiết Các Khoản Chi (2 Người)</div>
@@ -539,10 +587,10 @@
         <div class="cost-item">
             <div>
                 <div class="cost-name">🏨 Khách sạn The Grace</div>
-                <div class="cost-sub">51 Nam Kỳ Khởi Nghĩa (2 đêm)</div>
+                <div class="cost-sub">51 Nam Kỳ Khởi Nghĩa (1 đêm)</div>
             </div>
             <div class="cost-inputs">
-                <div class="cost-est">Đoán: 900,000đ</div>
+                <div class="cost-est">Đoán: 500,000đ</div>
                 <input class="cost-real-input" type="number" id="cost_2" data-est="900000" placeholder="Thực tế đ" oninput="calcTotalCost()">
             </div>
         </div>
@@ -653,18 +701,21 @@
 </div>
 
 <script>
-    // KÍCH HOẠT NHẠC NỀN CHẠY NGẦM TỰ ĐỘNG KHI CÓ TƯƠNG TÁC ĐẦU TIÊN
+    // BẬT / TẮT NHẠC
     const bgAudio = document.getElementById('bgAudio');
-    function startBgMusic() {
-        if (bgAudio && bgAudio.paused) {
+    const musicBtn = document.getElementById('musicBtn');
+
+    function toggleAudio() {
+        if (!bgAudio) return;
+        if (bgAudio.paused) {
             bgAudio.play().then(() => {
-                document.removeEventListener('click', startBgMusic);
-                document.removeEventListener('touchstart', startBgMusic);
-            }).catch(e => console.log('Chờ tương tác để phát nhạc'));
+                musicBtn.classList.add('playing');
+            }).catch(e => console.log('Lỗi phát âm thanh:', e));
+        } else {
+            bgAudio.pause();
+            musicBtn.classList.remove('playing');
         }
     }
-    document.addEventListener('click', startBgMusic);
-    document.addEventListener('touchstart', startBgMusic);
 
     function calcTotalCost() {
         let estTotal = 0;
@@ -682,6 +733,9 @@
 
         document.getElementById('totalEst').innerText = estTotal.toLocaleString('vi-VN') + ' đ';
         document.getElementById('totalReal').innerText = realTotal.toLocaleString('vi-VN') + ' đ';
+
+        const perPerson = Math.round(realTotal / 2);
+        document.getElementById('perPersonVal').innerText = perPerson.toLocaleString('vi-VN') + ' đ / người';
 
         const diff = realTotal - estTotal;
         const diffBox = document.getElementById('diffVal');
@@ -775,10 +829,12 @@
         localStorage.setItem('userNote', note);
     }
 
+    // TẢI THỜI TIẾT ĐÀ LẠT VÀ DỰ BÁO MƯA THEO GIỜ THỰC TẾ
     async function fetchDaLatWeather() {
         try {
-            const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=11.9465&longitude=108.4419&current_weather=true');
+            const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=11.9465&longitude=108.4419&current_weather=true&hourly=precipitation_probability,weathercode&timezone=Asia%2FBangkok');
             const data = await response.json();
+            
             if (data && data.current_weather) {
                 const temp = Math.round(data.current_weather.temperature);
                 const code = data.current_weather.weathercode;
