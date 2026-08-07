@@ -2,436 +2,303 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lịch Trình Đà Nẵng - Đà Lạt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kim Chi & Quang Thiện - Đà Lạt Trip</title>
+    <meta name="theme-color" content="#064e3b">
+    
+    <!-- Icons & Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary: #059669;
-            --primary-dark: #047857;
+            --primary-dark: #064e3b;
             --accent: #f59e0b;
-            --bg: #f3f4f6;
-            --card: #ffffff;
-            --text-main: #1f2937;
-            --text-sub: #6b7280;
-            --timeline-line: #e5e7eb;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.75);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; min-height: 100vh; }
+        .app { width: 100%; max-width: 430px; background: #020617; min-height: 100vh; position: relative; padding-bottom: 85px; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            padding-bottom: 40px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 480px;
-            background: #f9fafb;
-            min-height: 100vh;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        /* Hero Header */
+        /* Hero Banner */
         .hero {
-            background: linear-gradient(135deg, #065f46, #059669, #10b981);
-            color: white;
-            padding: 24px 20px 30px;
-            border-bottom-left-radius: 28px;
-            border-bottom-right-radius: 28px;
-            box-shadow: 0 10px 20px rgba(5, 150, 105, 0.2);
+            background: linear-gradient(180deg, rgba(6, 78, 59, 0.85) 0%, rgba(2, 6, 23, 1) 100%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') center/cover;
+            padding: 35px 20px 20px;
+            border-bottom: 1px solid var(--card-border);
         }
+        .user-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(52, 211, 153, 0.15); backdrop-filter: blur(10px); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); margin-bottom: 10px; }
+        .hero h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+        .hero p { font-size: 12px; color: var(--text-muted); }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
+        /* Widget Grid */
+        .widgets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 20px 0; }
+        .widget-box { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 10px; }
+        .widget-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(5, 150, 105, 0.2); color: #34d399; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .widget-val { font-weight: 800; font-size: 13px; }
+        .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        .hero h1 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 6px;
-        }
+        /* Tabs Navigation */
+        .tabs { display: flex; background: rgba(30, 41, 59, 0.6); margin: 20px; padding: 4px; border-radius: 14px; border: 1px solid var(--card-border); }
+        .tab { flex: 1; padding: 10px; text-align: center; border: none; background: transparent; color: var(--text-muted); font-size: 13px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+        .tab.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4); }
 
-        .hero p {
-            font-size: 13px;
-            opacity: 0.9;
-        }
+        /* Content & Cards */
+        .content { padding: 0 20px; display: none; }
+        .content.active { display: block; }
+        .timeline-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; backdrop-filter: blur(10px); transition: 0.2s; }
+        .timeline-card.done { opacity: 0.45; filter: grayscale(0.7); }
 
-        /* Navigation Tabs */
-        .tabs {
-            display: flex;
-            background: white;
-            margin: -20px 20px 20px;
-            padding: 6px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: relative;
-            z-index: 10;
-        }
+        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .time { font-size: 11px; font-weight: 800; color: #34d399; background: rgba(52, 211, 153, 0.12); padding: 4px 8px; border-radius: 6px; }
+        .tag { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.08); color: var(--text-muted); }
+        .tag.hot { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
 
-        .tab-btn {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            border: none;
-            background: transparent;
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--text-sub);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        .card-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
+        .card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
 
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
-        }
+        .btn-nav { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--card-border); border-radius: 12px; color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; }
+        .btn-nav:active { background: var(--primary); }
 
-        /* Timeline & Cards */
-        .content-section {
-            display: none;
-            padding: 0 20px;
-        }
+        .check-btn { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; }
+        .timeline-card.done .check-btn { color: #34d399; }
 
-        .content-section.active {
-            display: block;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 24px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 15px;
-            bottom: 15px;
-            width: 3px;
-            background: var(--timeline-line);
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -24px;
-            top: 18px;
-            width: 17px;
-            height: 17px;
-            border-radius: 50%;
-            background: white;
-            border: 4px solid var(--primary);
-            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
-            z-index: 2;
-        }
-
-        .timeline-item.highlight .timeline-dot {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 18px;
-            padding: 18px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(229, 231, 235, 0.8);
-            transition: transform 0.2s;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .time-badge {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary);
-            background: #ecfdf5;
-            padding: 4px 10px;
-            border-radius: 8px;
-        }
-
-        .tag {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 6px;
-            background: #f3f4f6;
-            color: var(--text-sub);
-        }
-
-        .tag.must-go {
-            background: #fef3c7;
-            color: #d97706;
-        }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 6px;
-        }
-
-        .card-desc {
-            font-size: 13px;
-            color: var(--text-sub);
-            line-height: 1.5;
-            margin-bottom: 14px;
-        }
-
-        .btn-map {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 10px;
-            background: #f0fdf4;
-            color: var(--primary-dark);
-            border: 1px solid #bbf7d0;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-map:active {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Note Banner */
-        .info-banner {
-            background: #eff6ff;
-            border-left: 4px solid #3b82f6;
-            padding: 12px 16px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 12px;
-            color: #1e40af;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        /* Floating Bottom Nav */
+        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px); border-top: 1px solid var(--card-border); padding: 12px 20px; z-index: 100; }
+        .btn-center { width: 100%; padding: 12px; background: linear-gradient(135deg, #059669, #10b981); border: none; border-radius: 14px; color: white; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <!-- Hero Header -->
+<div class="app">
+    <!-- Hero Banner -->
     <div class="hero">
-        <span class="hero-badge"><i class="fa-solid fa-plane"></i> TRIP ITINERARY</span>
+        <div class="user-badge"><i class="fa-solid fa-heart"></i> Kim Chi & Quang Thiện</div>
         <h1>ĐÀ NẴNG ➔ ĐÀ LẠT</h1>
-        <p><i class="fa-regular fa-calendar"></i> Tối 07/08 – Chiều 09/08 | 2N1Đ</p>
+        <p><i class="fa-regular fa-calendar-check"></i> 07/08 – 09/08 | Lịch Trình Chuẩn Trend TikTok</p>
+
+        <!-- Widgets -->
+        <div class="widgets-grid">
+            <div class="widget-box">
+                <div class="widget-icon"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                    <div class="widget-val" id="countdown">00:00:00</div>
+                    <div class="widget-lbl">Đếm ngược khởi hành</div>
+                </div>
+            </div>
+            <div class="widget-box">
+                <div class="widget-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                <div>
+                    <div class="widget-val">16°C - 22°C</div>
+                    <div class="widget-lbl">Thời Tiết Đà Lạt</div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Tab Switching -->
+    <!-- Tab Navigation -->
     <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('day1')">Ngày 1 (08/08)</button>
-        <button class="tab-btn" onclick="switchTab('day2')">Ngày 2 (09/08)</button>
+        <button class="tab active" onclick="switchDay('d1', this)">Ngày 1 (08/08)</button>
+        <button class="tab" onclick="switchDay('d2', this)">Ngày 2 (09/08)</button>
     </div>
 
     <!-- NGÀY 1 -->
-    <div id="day1" class="content-section active">
-        <div class="info-banner">
-            <i class="fa-solid fa-circle-info fa-lg"></i>
-            <div>Check-in gửi đồ khách sạn từ 5:00 sáng, 13:00 nhận phòng chính thức.</div>
+    <div id="d1" class="content active">
+        <div class="timeline-card" id="c1">
+            <div class="card-top">
+                <span class="time">05:00 - 07:00</span>
+                <span class="tag">Săn mây</span>
+            </div>
+            <div class="card-title">
+                Thác Mây & Chill
+                <button class="check-btn" onclick="toggleDone('c1')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Cất đồ, nhận xe máy. Ngắm sương mờ và bình minh vờn qua đồi thông.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Thác+Mây+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
-        <div class="timeline">
-            <!-- Item 1 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">05:00 - 07:00</span>
-                        <span class="tag">Săn mây</span>
-                    </div>
-                    <div class="card-title">Thác Mây & Chill</div>
-                    <div class="card-desc">Check-in cất đồ, nhận xe máy. Di chuyển đi ngắm bình minh và sương mờ đồi thông.</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Thác+Mây+Đà+Lạt" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới Thác Mây
-                    </a>
-                </div>
+        <div class="timeline-card" id="c2">
+            <div class="card-top">
+                <span class="time">07:00 - 08:15</span>
+                <span class="tag">Ăn sáng</span>
             </div>
+            <div class="card-title">
+                Bánh Mì Xíu Mại 79
+                <button class="check-btn" onclick="toggleDone('c2')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Số 1 Thông Thiên Học (Quán 79 gốc). Bánh mì nóng giòn chấm xíu mại đậm vị.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=1+Thông+Thiên+Học+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+        </div>
 
-            <!-- Item 2 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">07:00 - 08:00</span>
-                        <span class="tag">Ăn sáng</span>
-                    </div>
-                    <div class="card-title">Bánh Mì Xíu Mại 79</div>
-                    <div class="card-desc">Địa chỉ: 1 Thông Thiên Học (Quán 79 gốc). Nước xíu mại nóng hổi siêu ngon.</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=1+Thông+Thiên+Học+Đà+Lạt" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới Quán 79
-                    </a>
-                </div>
+        <div class="timeline-card" id="c3">
+            <div class="card-top">
+                <span class="time">08:30 - 11:30</span>
+                <span class="tag">Check-in</span>
             </div>
+            <div class="card-title">
+                Suối Vàng & Đồi Măng Lin
+                <button class="check-btn" onclick="toggleDone('c3')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Tuyến Tỉnh Lộ 725 mộng mơ. Chụp ảnh thảo nguyên Suối Vàng & Đồi Măng Lin.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Đồi+Măng+Lin+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+        </div>
 
-            <!-- Item 3 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">08:30 - 11:30</span>
-                        <span class="tag">Check-in</span>
-                    </div>
-                    <div class="card-title">Đồi Măng Lin & Suối Vàng</div>
-                    <div class="card-desc">Tuyến đường đồi thông thơ mộng và thảo nguyên xanh ngát. Mang đồ phong cách Vintage.</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Đồi+Măng+Lin+Đà+Lạt" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới Đồi Măng Lin
-                    </a>
-                </div>
+        <div class="timeline-card" id="c4">
+            <div class="card-top">
+                <span class="time">11:30 - 13:00</span>
+                <span class="tag">Ăn trưa</span>
             </div>
+            <div class="card-title">
+                Sườn Cay / Khap Bun Kha
+                <button class="check-btn" onclick="toggleDone('c4')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Sườn cay khổng lồ (42 Phan Chu Trinh) hoặc Lẩu Thái Khap Bun Kha (26 Nguyễn Văn Cừ).</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=42+Phan+Chu+Trinh+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+        </div>
 
-            <!-- Item 4 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">11:30 - 13:00</span>
-                        <span class="tag">Ăn trưa</span>
-                    </div>
-                    <div class="card-title">Sườn Cay / Khap Bun Kha</div>
-                    <div class="card-desc">Lựa chọn: Sườn cay khổng lồ (42 Phan Chu Trinh) hoặc Lẩu Thái Khap Bun Kha (26 Nguyễn Văn Cừ).</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=42+Phan+Chu+Trinh+Đà+Lạt" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới 42 Phan Chu Trinh
-                    </a>
-                </div>
+        <div class="timeline-card" id="c5" style="border-color: rgba(245, 158, 11, 0.4);">
+            <div class="card-top">
+                <span class="time" style="color: #f59e0b; background: rgba(245, 158, 11, 0.12);">15:30 - 18:00</span>
+                <span class="tag hot">HOT TIKTOK ★</span>
             </div>
+            <div class="card-title">
+                Miền Du Mục Đà Lạt 🎪
+                <button class="check-btn" onclick="toggleDone('c5')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Đón hoàng hôn tuyệt đẹp từ 16:00 - 17:30. Phong cách Mông Cổ, đồi cừu & lều trại.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Miền+Du+Mục+Đà+Lạt" target="_blank" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+        </div>
 
-            <!-- Item 5 -->
-            <div class="timeline-item highlight">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">15:30 - 18:00</span>
-                        <span class="tag must-go">MUST GO ★</span>
-                    </div>
-                    <div class="card-title">Miền Du Mục Đà Lạt</div>
-                    <div class="card-desc">Đường Lâm Văn Thạnh, P.11. Phong cách Mông Cổ/Bohemian, đồi cừu & đón hoàng hôn siêu đẹp!</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Miền+Du+Mục+Đà+Lạt" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới Miền Du Mục
-                    </a>
-                </div>
+        <div class="timeline-card" id="c6">
+            <div class="card-top">
+                <span class="time">18:30 - 21:00</span>
+                <span class="tag">Ăn tối</span>
             </div>
-
-            <!-- Item 6 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">18:30 - 21:00</span>
-                        <span class="tag">Tối & Nightlife</span>
-                    </div>
-                    <div class="card-title">BBQ & Chợ Đêm Đà Lạt</div>
-                    <div class="card-desc">Thưởng thức đồ nướng, sữa đậu nành nóng và bánh tráng nướng giữa không khí lạnh.</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Chợ+Đêm+Đà+Lạt" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới Chợ Đêm
-                    </a>
-                </div>
+            <div class="card-title">
+                BBQ Nướng & Chợ Đêm
+                <button class="check-btn" onclick="toggleDone('c6')"><i class="fa-regular fa-circle-check"></i></button>
             </div>
+            <div class="card-desc">Thưởng thức món nướng nóng hổi, uống sữa đậu nành & dạo không khí chợ đêm.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Chợ+Đêm+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
     </div>
 
     <!-- NGÀY 2 -->
-    <div id="day2" class="content-section">
-        <div class="timeline">
-            <!-- Item 1 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">07:00 - 09:00</span>
-                        <span class="tag">Sáng & Cafe</span>
-                    </div>
-                    <div class="card-title">Bánh Căn Lệ & Cafe View</div>
-                    <div class="card-desc">Ăn bánh căn Lệ (Yersin) rồi ghé tiệm cafe view thung lũng (Túi Mơ To / Lời Của Gió).</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Bánh+Căn+Lệ+Đà+Lạt" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới Bánh Căn Lệ
-                    </a>
-                </div>
+    <div id="d2" class="content">
+        <div class="timeline-card" id="c7">
+            <div class="card-top">
+                <span class="time">05:00 - 07:15</span>
+                <span class="tag hot">VIEW ĐỈNH</span>
             </div>
-
-            <!-- Item 2 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">09:00 - 11:30</span>
-                        <span class="tag">Mua sắm</span>
-                    </div>
-                    <div class="card-title">Quảng Trường & Mua Đặc Sản</div>
-                    <div class="card-desc">Chụp ảnh Nụ hoa Atiso tại Quảng trường Lâm Viên, sau đó ghé Chợ mua dâu tây & mứt hoa quả.</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Quảng+Trường+Lâm+Viên" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới Quảng Trường
-                    </a>
-                </div>
+            <div class="card-title">
+                Săn Mây Đồi Chè Cầu Đất
+                <button class="check-btn" onclick="toggleDone('c7')"><i class="fa-regular fa-circle-check"></i></button>
             </div>
-
-            <!-- Item 3 -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="time-badge">11:30 - 14:00</span>
-                        <span class="tag">Kết thúc</span>
-                    </div>
-                    <div class="card-title">Lẩu Gà Lá É & Về Đà Nẵng</div>
-                    <div class="card-desc">Ăn trưa Lẩu gà lá é Tao Ngộ ➔ Về trả phòng, trả xe máy ➔ Bến xe/Sân bay về lại Đà Nẵng.</div>
-                    <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Lẩu+Gà+Lá+É+Tao+Ngộ+Đà+Lạt" target="_blank">
-                        <i class="fa-solid fa-location-dot"></i> Đường tới Lẩu Gà Lá É
-                    </a>
-                </div>
-            </div>
+            <div class="card-desc">Biển mây vờn quạt gió khổng lồ. Đón bình minh rực rỡ nhất Đà Lạt.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Đồi+Chè+Cầu+Đất+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
+
+        <div class="timeline-card" id="c8">
+            <div class="card-top">
+                <span class="time">07:30 - 08:30</span>
+                <span class="tag">Ăn sáng</span>
+            </div>
+            <div class="card-title">
+                Bánh Căn Lệ (Yersin)
+                <button class="check-btn" onclick="toggleDone('c8')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Bánh căn trứng cút lòng đào chấm xíu mại nóng giòn trọn vị.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Bánh+Căn+Lệ+Yersin+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+        </div>
+
+        <div class="timeline-card" id="c9">
+            <div class="card-top">
+                <span class="time">08:30 - 10:30</span>
+                <span class="tag">Cafe View</span>
+            </div>
+            <div class="card-title">
+                Tiệm Cafe Túi Mơ To 🌼
+                <button class="check-btn" onclick="toggleDone('c9')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Vườn cúc họa mi trắng mộng mơ & góc view trọn thung lũng nhà kính.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Tiệm+cà+phê+Túi+Mơ+To+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+        </div>
+
+        <div class="timeline-card" id="c10">
+            <div class="card-top">
+                <span class="time">10:30 - 12:00</span>
+                <span class="tag">Trải nghiệm</span>
+            </div>
+            <div class="card-title">
+                Hái Dâu Tây & Quảng Trường
+                <button class="check-btn" onclick="toggleDone('c10')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Tự tay hái dâu tươi tại vườn làm quà & check-in Nụ hoa Atiso Hồ Xuân Hương.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Quảng+Trường+Lâm+Viên" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+        </div>
+
+        <div class="timeline-card" id="c11">
+            <div class="card-top">
+                <span class="time">12:00 - 14:00</span>
+                <span class="tag">Kết thúc</span>
+            </div>
+            <div class="card-title">
+                Lẩu Gà Lá É ➔ Trả Phòng
+                <button class="check-btn" onclick="toggleDone('c11')"><i class="fa-regular fa-circle-check"></i></button>
+            </div>
+            <div class="card-desc">Ăn trưa lẩu gà Tao Ngộ, mua mứt sấy quà tặng, về trả phòng & xe khởi hành về Đà Nẵng.</div>
+            <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Lẩu+gà+lá+é+Tao+Ngộ+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="bottom-nav">
+        <a class="btn-center" href="https://www.google.com/maps/dir/?api=1&destination=Chợ+Đà+Lạt" target="_blank">
+            <i class="fa-solid fa-compass"></i> Dẫn Đường Về Trung Tâm
+        </a>
     </div>
 </div>
 
 <script>
-    function switchTab(dayId) {
-        // Toggle Active Class trên Tabs
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-
-        // Toggle Active Class trên Content
-        document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+    function switchDay(dayId, btn) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
         document.getElementById(dayId).classList.add('active');
     }
-</script>
 
+    function toggleDone(id) {
+        const card = document.getElementById(id);
+        card.classList.toggle('done');
+        localStorage.setItem(id, card.classList.contains('done'));
+    }
+
+    window.onload = () => {
+        document.querySelectorAll('.timeline-card').forEach(card => {
+            if(localStorage.getItem(card.id) === 'true') {
+                card.classList.add('done');
+            }
+        });
+    }
+
+    const targetDate = new Date('2026-08-07T19:30:00').getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+        if(diff > 0) {
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('countdown').innerHTML = `${h}h ${m}m ${s}s`;
+        } else {
+            document.getElementById('countdown').innerHTML = "Đang đi rồi! 🌲";
+        }
+    }, 1000);
+</script>
 </body>
 </html>
