@@ -35,18 +35,18 @@
         .hero h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
         .hero p { font-size: 12px; color: var(--text-muted); }
 
-        /* Rain Alert Widget */
-        .rain-alert {
-            margin: 15px 20px 0;
-            background: rgba(239, 68, 68, 0.12);
-            border: 1px solid rgba(239, 68, 68, 0.3);
+        /* Care Alert */
+        .care-alert {
+            margin: 12px 20px 0;
+            background: rgba(5, 150, 105, 0.15);
+            border: 1px solid rgba(52, 211, 153, 0.3);
             border-radius: 14px;
             padding: 10px 14px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 11px;
-            color: #fca5a5;
+            color: #a7f3d0;
         }
 
         /* Widgets Grid */
@@ -56,16 +56,15 @@
         .widget-val { font-weight: 800; font-size: 13px; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        /* Tabs Navigation - Fixed Scroll Bug */
-        .tabs-container { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 15px 20px 0; scrollbar-width: none; }
-        .tabs-container::-webkit-scrollbar { display: none; }
-        .tabs { display: flex; background: rgba(30, 41, 59, 0.6); padding: 4px; border-radius: 14px; border: 1px solid var(--card-border); min-width: max-content; }
-        .tab { flex: 1; min-width: 85px; padding: 10px 12px; text-align: center; border: none; background: transparent; color: var(--text-muted); font-size: 11px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: 0.3s; white-space: nowrap; }
-        .tab.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4); }
+        /* Tabs Navigation - FIXED FIT SCREEN */
+        .tabs-container { margin: 15px 20px 0; }
+        .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: rgba(30, 41, 59, 0.6); padding: 4px; border-radius: 14px; border: 1px solid var(--card-border); }
+        .tab { padding: 10px 2px; text-align: center; border: none; background: transparent; color: var(--text-muted); font-size: 11px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: 0.3s; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+        .tab.active { background: var(--primary) !important; color: white !important; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4); }
 
         /* Content Sections */
         .content { padding: 15px 20px 0; display: none; }
-        .content.active { display: block; }
+        .content.active { display: block !important; }
         
         .timeline-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; backdrop-filter: blur(10px); transition: all 0.3s ease; }
         .timeline-card.done { opacity: 0.4; filter: grayscale(0.8); transform: scale(0.98); }
@@ -84,12 +83,13 @@
         .check-btn { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; transition: 0.2s; }
         .timeline-card.done .check-btn { color: #34d399; transform: scale(1.1); }
 
-        /* Checklist & Notes Style */
+        /* Checklist Style */
+        .pack-section-title { font-size: 12px; font-weight: 800; color: #34d399; text-transform: uppercase; margin: 12px 0 8px; letter-spacing: 0.5px; }
         .pack-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 8px; font-size: 13px; }
         .pack-item input { width: 18px; height: 18px; accent-color: var(--primary); }
-        .note-area { width: 100%; height: 100px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; color: #fff; font-size: 13px; resize: none; outline: none; margin-top: 8px; }
+        .note-area { width: 100%; height: 90px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; color: #fff; font-size: 13px; resize: none; outline: none; margin-top: 8px; }
 
-        /* Floating Bottom Nav - Fixed Grid Layout */
+        /* Floating Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--card-border); padding: 10px 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; z-index: 100; }
         .btn-action { padding: 10px 4px; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--card-border); border-radius: 12px; color: white; font-weight: 700; font-size: 11px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; text-align: center; }
         .btn-gas { background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.3); color: #f59e0b; }
@@ -106,10 +106,10 @@
         <h1>ĐÀ NẴNG ➔ ĐÀ LẠT</h1>
         <p><i class="fa-regular fa-calendar-check"></i> 07/08 – 09/08 | Pro Assistant</p>
 
-        <!-- Weather Alert -->
-        <div class="rain-alert">
-            <i class="fa-solid fa-cloud-showers-heavy"></i>
-            <div><b>Mẹo tháng 8:</b> Dễ mưa nhẹ 14:00 - 16:30. Nhớ để ô/áo mưa sẵn trong cốp xe!</div>
+        <!-- Care Alert -->
+        <div class="care-alert">
+            <i class="fa-solid fa-shield-heart"></i>
+            <div><b>Mẹo giữ sức khỏe:</b> Đà Lạt lạnh chiều, giữ ấm cơ thể & chuẩn bị trà gừng ấm đi đường nhé!</div>
         </div>
 
         <!-- Widgets -->
@@ -131,13 +131,13 @@
         </div>
     </div>
 
-    <!-- Tab Navigation -->
+    <!-- Tab Navigation - SHORTENED NAME -->
     <div class="tabs-container">
         <div class="tabs">
-            <button class="tab active" onclick="switchDay('d1', this)">Ngày 1 (08/08)</button>
-            <button class="tab" onclick="switchDay('d2', this)">Ngày 2 (09/08)</button>
+            <button class="tab active" onclick="switchDay('d1', this)">Ngày 1</button>
+            <button class="tab" onclick="switchDay('d2', this)">Ngày 2</button>
             <button class="tab" onclick="switchDay('food', this)">🍜 Món Phụ</button>
-            <button class="tab" onclick="switchDay('pack', this)">🧳 Hành Lý & Note</button>
+            <button class="tab" onclick="switchDay('pack', this)">🧳 Hành Lý</button>
         </div>
     </div>
 
@@ -153,7 +153,7 @@
         <div class="timeline-card" id="c2">
             <div class="card-top"><span class="time">07:00 - 08:15</span><span class="tag">Ăn sáng</span></div>
             <div class="card-title">Bánh Mì Xíu Mại 79 <button class="check-btn" onclick="toggleDone('c2')"><i class="fa-regular fa-circle-check"></i></button></div>
-            <div class="card-desc">Số 1 Thông Thiên Học (Quán 79 gốc). Bánh mì giòn chấm xíu mại đậm vị.</div>
+            <div class="card-desc">Số 1 Thông Thiên Học (Quán 79 gốc). Bánh mì giòn chấm xíu mại đậm vị nóng hổi.</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=1+Thông+Thiên+Học+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
@@ -240,8 +240,15 @@
         </div>
     </div>
 
-    <!-- CHECKLIST & NOTE -->
+    <!-- CHECKLIST -->
     <div id="pack" class="content">
+        <div class="pack-section-title">🏥 Tủ Thuốc & Sức Khỏe Cá Nhân</div>
+        <div class="pack-item"><span>🔥 Miếng dán giữ nhiệt ấm bụng</span><input type="checkbox" id="pk_c1" onclick="saveCheck('pk_c1')"></div>
+        <div class="pack-item"><span>🍵 Trà gừng túi lọc / Kẹo gừng</span><input type="checkbox" id="pk_c2" onclick="saveCheck('pk_c2')"></div>
+        <div class="pack-item"><span>💊 Thuốc giảm đau / Cảm nhẹ cá nhân</span><input type="checkbox" id="pk_c3" onclick="saveCheck('pk_c3')"></div>
+        <div class="pack-item"><span>🧻 Khăn giấy khô & Khăn giấy ướt</span><input type="checkbox" id="pk_c5" onclick="saveCheck('pk_c5')"></div>
+
+        <div class="pack-section-title">🧳 Hành Lý Giấy Tờ</div>
         <div class="pack-item"><span>📄 CCCD & Bằng lái xe máy</span><input type="checkbox" id="pk1" onclick="saveCheck('pk1')"></div>
         <div class="pack-item"><span>🧥 Áo khoác ấm / Áo len</span><input type="checkbox" id="pk2" onclick="saveCheck('pk2')"></div>
         <div class="pack-item"><span>☂️ Ô nhỏ / Áo mưa nhẹ</span><input type="checkbox" id="pk3" onclick="saveCheck('pk3')"></div>
@@ -252,7 +259,7 @@
         <textarea class="note-area" id="tripNote" placeholder="Ghi biển số xe thuê, số phòng khách sạn..." oninput="saveNote()"></textarea>
     </div>
 
-    <!-- Bottom Action Bar - Fixed Fuel Query -->
+    <!-- Bottom Action Bar -->
     <div class="bottom-nav">
         <a class="btn-action btn-gas" href="https://www.google.com/maps/search/?api=1&query=gas+station" target="_blank">
             <i class="fa-solid fa-gas-pump"></i> Cây Xăng
@@ -267,22 +274,26 @@
 </div>
 
 <script>
-    function switchDay(dayId, btn) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    function switchDay(targetId, element) {
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(dayId).classList.add('active');
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+        const selectedContent = document.getElementById(targetId);
+        if (selectedContent) selectedContent.classList.add('active');
+        if (element) element.classList.add('active');
     }
 
     function toggleDone(id) {
         const card = document.getElementById(id);
-        card.classList.toggle('done');
-        localStorage.setItem(id, card.classList.contains('done'));
+        if (card) {
+            card.classList.toggle('done');
+            localStorage.setItem(id, card.classList.contains('done'));
+        }
     }
 
     function saveCheck(id) {
         const chk = document.getElementById(id);
-        localStorage.setItem(id, chk.checked);
+        if (chk) localStorage.setItem(id, chk.checked);
     }
 
     function saveNote() {
@@ -291,25 +302,20 @@
     }
 
     window.onload = () => {
-        // Restore timeline cards
         document.querySelectorAll('.timeline-card').forEach(card => {
-            if(card.id && localStorage.getItem(card.id) === 'true') {
-                card.classList.add('done');
-            }
+            if(card.id && localStorage.getItem(card.id) === 'true') card.classList.add('done');
         });
-        // Restore checklist
-        ['pk1','pk2','pk3','pk4','pk5'].forEach(id => {
+        ['pk1','pk2','pk3','pk4','pk5','pk_c1','pk_c2','pk_c3','pk_c5'].forEach(id => {
             if(localStorage.getItem(id) === 'true') {
-                document.getElementById(id).checked = true;
+                const el = document.getElementById(id);
+                if(el) el.checked = true;
             }
         });
-        // Restore note
         if(localStorage.getItem('userNote')) {
             document.getElementById('tripNote').value = localStorage.getItem('userNote');
         }
     }
 
-    // Fixed Target Date
     const targetDate = new Date('2026-08-07T19:30:00').getTime();
     setInterval(() => {
         const now = new Date().getTime();
