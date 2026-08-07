@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kim Chi & Quang Thiện - Da Lat Trip</title>
+    <title>Kim Chi & Quang Thiện - Da Lat Ultimate App</title>
     <meta name="theme-color" content="#064e3b">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
         .widget-val { font-weight: 800; font-size: 13px; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        /* Tabs Navigation - FIXED FIT SCREEN */
+        /* Tabs Navigation - Perfectly Fitted */
         .tabs-container { margin: 15px 20px 0; }
         .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; background: rgba(30, 41, 59, 0.6); padding: 4px; border-radius: 14px; border: 1px solid var(--card-border); }
         .tab { padding: 10px 2px; text-align: center; border: none; background: transparent; color: var(--text-muted); font-size: 11px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: 0.3s; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
@@ -75,7 +75,10 @@
         .tag.hot { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
 
         .card-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; justify-content: space-between; }
-        .card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+        .card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px; }
+
+        /* Outfit Tip Box */
+        .outfit-box { background: rgba(245, 158, 11, 0.1); border: 1px dashed rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 8px 10px; font-size: 11px; color: #fef08a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
 
         .btn-nav { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--card-border); border-radius: 12px; color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; }
         .btn-nav:active { background: var(--primary); }
@@ -88,6 +91,11 @@
         .pack-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 8px; font-size: 13px; }
         .pack-item input { width: 18px; height: 18px; accent-color: var(--primary); }
         .note-area { width: 100%; height: 90px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; color: #fff; font-size: 13px; resize: none; outline: none; margin-top: 8px; }
+
+        /* Secret Love Banner */
+        .love-card { background: linear-gradient(135deg, rgba(225, 29, 72, 0.2), rgba(159, 18, 57, 0.2)); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 18px; padding: 16px; margin-top: 15px; text-align: center; }
+        .love-card h4 { color: #fda4af; font-size: 14px; margin-bottom: 6px; }
+        .love-card p { font-size: 12px; color: #fecdd3; font-style: italic; line-height: 1.5; }
 
         /* Floating Bottom Nav */
         .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--card-border); padding: 10px 16px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; z-index: 100; }
@@ -104,7 +112,7 @@
     <div class="hero">
         <div class="user-badge"><i class="fa-solid fa-heart"></i> Kim Chi & Quang Thiện</div>
         <h1>ĐÀ NẴNG ➔ ĐÀ LẠT</h1>
-        <p><i class="fa-regular fa-calendar-check"></i> 07/08 – 09/08 | Pro Assistant</p>
+        <p><i class="fa-regular fa-calendar-check"></i> 07/08 – 09/08 | Ultimate Assistant</p>
 
         <!-- Care Alert -->
         <div class="care-alert">
@@ -131,7 +139,7 @@
         </div>
     </div>
 
-    <!-- Tab Navigation - SHORTENED NAME -->
+    <!-- Tab Navigation -->
     <div class="tabs-container">
         <div class="tabs">
             <button class="tab active" onclick="switchDay('d1', this)">Ngày 1</button>
@@ -147,6 +155,7 @@
             <div class="card-top"><span class="time">05:00 - 07:00</span><span class="tag">Săn mây</span></div>
             <div class="card-title">Thác Mây & Chill <button class="check-btn" onclick="toggleDone('c1')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Cất đồ, nhận xe máy. Ngắm sương mờ và bình minh vờn qua đồi thông.</div>
+            <div class="outfit-box"><i class="fa-solid fa-shirt"></i> Outfit gợi ý: Áo khoác ấm + Khăn len (Sáng sớm lạnh ~15°C)</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Thác+Mây+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
@@ -161,6 +170,7 @@
             <div class="card-top"><span class="time">08:30 - 11:30</span><span class="tag">Check-in</span></div>
             <div class="card-title">Suối Vàng & Đồi Măng Lin <button class="check-btn" onclick="toggleDone('c3')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Tuyến Tỉnh Lộ 725 mộng mơ. Thảo nguyên Suối Vàng & đồi thông Măng Lin.</div>
+            <div class="outfit-box"><i class="fa-solid fa-camera"></i> Góc ảnh đẹp: Cây thông cô đơn & Đồi cỏ xanh ngát</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Đồi+Măng+Lin+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
@@ -175,6 +185,7 @@
             <div class="card-top"><span class="time" style="color: #f59e0b; background: rgba(245, 158, 11, 0.12);">15:30 - 18:00</span><span class="tag hot">HOT TIKTOK ★</span></div>
             <div class="card-title">Miền Du Mục Đà Lạt 🎪 <button class="check-btn" onclick="toggleDone('c5')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Đón hoàng hôn tuyệt đẹp từ 16:00. Phong cách Mông Cổ, đồi cừu & lều trại.</div>
+            <div class="outfit-box"><i class="fa-solid fa-shirt"></i> Outfit gợi ý: Đầm Bohemian/Vintage tone Cam đất, Trắng, Nâu</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Miền+Du+Mục+Đà+Lạt" target="_blank" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
@@ -206,6 +217,7 @@
             <div class="card-top"><span class="time">08:30 - 10:30</span><span class="tag">Cafe View</span></div>
             <div class="card-title">Tiệm Cafe Túi Mơ To 🌼 <button class="check-btn" onclick="toggleDone('c9')"><i class="fa-regular fa-circle-check"></i></button></div>
             <div class="card-desc">Vườn cúc họa mi trắng mộng mơ & view trọn thung lũng nhà kính.</div>
+            <div class="outfit-box"><i class="fa-solid fa-camera"></i> Góc ảnh đẹp: Vườn cúc họa mi & căn nhà gỗ mộng mơ</div>
             <a class="btn-nav" href="https://www.google.com/maps/search/?api=1&query=Tiệm+cà+phê+Túi+Mơ+To+Đà+Lạt" target="_blank"><i class="fa-solid fa-location-arrow"></i> Google Maps Chỉ Đường</a>
         </div>
 
@@ -240,7 +252,7 @@
         </div>
     </div>
 
-    <!-- CHECKLIST -->
+    <!-- CHECKLIST & LOVE NOTE -->
     <div id="pack" class="content">
         <div class="pack-section-title">🏥 Tủ Thuốc & Sức Khỏe Cá Nhân</div>
         <div class="pack-item"><span>🔥 Miếng dán giữ nhiệt ấm bụng</span><input type="checkbox" id="pk_c1" onclick="saveCheck('pk_c1')"></div>
@@ -257,6 +269,12 @@
 
         <div style="margin-top: 15px; font-weight: 700; font-size: 13px;">📝 Ghi Chú Nhanh (SĐT Khách sạn, Biển số xe):</div>
         <textarea class="note-area" id="tripNote" placeholder="Ghi biển số xe thuê, số phòng khách sạn..." oninput="saveNote()"></textarea>
+
+        <!-- Secret Love Note -->
+        <div class="love-card">
+            <h4>❤️ Lời Nhắn Dành Cho Kim Chi</h4>
+            <p>"Chúc bé cưng có một chuyến đi Đà Lạt thiệt vui, chụp được 1000 tấm ảnh đẹp và luôn có anh bên cạnh chăm sóc nhé!"</p>
+        </div>
     </div>
 
     <!-- Bottom Action Bar -->
