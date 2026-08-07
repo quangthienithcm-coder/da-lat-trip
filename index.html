@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Trình Đà Nẵng - Đà Lạt</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --accent: #ff9800;
+            --bg: #f4f6f8;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 15px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #1b5e20, #4caf50);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .header h1 { margin: 0; font-size: 22px; }
+        .header p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
+        
+        .day-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0 10px 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .card.highlight {
+            border-left-color: var(--accent);
+        }
+        
+        .time {
+            font-size: 12px;
+            font-weight: bold;
+            color: #777;
+            text-transform: uppercase;
+        }
+        
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #111;
+        }
+        
+        .desc {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .btn-map {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background-color: #e8f5e9;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 5px;
+            transition: 0.2s;
+        }
+        .btn-map:active {
+            background-color: var(--primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🌲 ĐÀ NẴNG ➔ ĐÀ LẠT 🛵</h1>
+        <p>Lịch trình & Dẫn đường tự động (7/8 - 9/8)</p>
+    </div>
+
+    <!-- NGÀY 1 -->
+    <div class="day-title">📍 Ngày 1: Săn Mây & Trải Nghiệm (8/8)</div>
+
+    <div class="card">
+        <span class="time">05:00 - 07:00</span>
+        <div class="title">Săn mây tại Thác Mây</div>
+        <div class="desc">Cất đồ, thuê xe máy và di chuyển đi ngắm bình minh sương mờ.</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Thác+Mây+Đà+Lạt" target="_blank">🗺️ Chỉ đường tới Thác Mây</a>
+    </div>
+
+    <div class="card">
+        <span class="time">07:00 - 08:00</span>
+        <div class="title">Bánh mì xíu mại 79</div>
+        <div class="desc">Ăn sáng tại số 1 Thông Thiên Học (Quán 79 gốc).</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=1+Thông+Thiên+Học+Đà+Lạt" target="_blank">🗺️ Đường tới Bánh Mì Xíu Mại</a>
+    </div>
+
+    <div class="card">
+        <span class="time">08:30 - 11:30</span>
+        <div class="title">Đồi Măng Lin & Suối Vàng</div>
+        <div class="desc">Check-in đồi thông mộng mơ và con đường thảo nguyên Suối Vàng.</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Đồi+Măng+Lin+Đà+Lạt" target="_blank">🗺️ Đường tới Đồi Măng Lin</a>
+    </div>
+
+    <div class="card">
+        <span class="time">11:30 - 13:00</span>
+        <div class="title">Ăn Trưa: Sườn Cay / Khap Bun Kha</div>
+        <div class="desc">Lựa chọn: 42 Phan Chu Trinh (Sườn cay) hoặc 26 Nguyễn Văn Cừ (Lẩu Thái).</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=42+Phan+Chu+Trinh+Đà+Lạt" target="_blank">🗺️ Đường tới Sườn Cay</a>
+    </div>
+
+    <div class="card highlight">
+        <span class="time">15:30 - 18:00</span>
+        <div class="title">Miền Du Mục Đà Lạt 🎪</div>
+        <div class="desc">Chụp ảnh phong cách Mông Cổ/Bohemian, ngắm hoàng hôn đồi thông cực chill.</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Miền+Du+Mục+Đà+Lạt" target="_blank">🗺️ Đường tới Miền Du Mục</a>
+    </div>
+
+    <div class="card">
+        <span class="time">18:30 - 21:00</span>
+        <div class="title">BBQ & Chợ Đêm Đà Lạt</div>
+        <div class="desc">Thưởng thức đồ nướng, sữa đậu nành nóng và bánh tráng nướng.</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Chợ+Đêm+Đà+Lạt" target="_blank">🗺️ Đường tới Chợ Đêm</a>
+    </div>
+
+    <!-- NGÀY 2 -->
+    <div class="day-title">📍 Ngày 2: Trung Tâm & Trở Về (9/8)</div>
+
+    <div class="card">
+        <span class="time">07:00 - 09:00</span>
+        <div class="title">Ăn Sáng & Cafe View Thung Lũng</div>
+        <div class="desc">Bánh căn Lệ (Yersin) / Bún bò ➔ Ghé Lời Của Gió hoặc Túi Mơ To.</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Bánh+Căn+Lệ+Đà+Lạt" target="_blank">🗺️ Đường tới Bánh Căn Lệ</a>
+    </div>
+
+    <div class="card">
+        <span class="time">09:00 - 11:30</span>
+        <div class="title">Quảng trường Lâm Viên & Mua Quà</div>
+        <div class="desc">Chụp ảnh nụ hoa Atiso, ghé Chợ Đà Lạt mua dâu tây, hoa quả sấy.</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Quảng+Trường+Lâm+Viên" target="_blank">🗺️ Đường tới Quảng Trường</a>
+    </div>
+
+    <div class="card">
+        <span class="time">11:30 - 14:00</span>
+        <div class="title">Ăn Trưa & Khởi Hành Về Đà Nẵng</div>
+        <div class="desc">Ăn lẩu gà lá é / nem nướng, trả phòng khách sạn, trả xe và ra bến xe.</div>
+        <a class="btn-map" href="https://www.google.com/maps/search/?api=1&query=Lẩu+Gà+Lá+É+Tao+Ngộ+Đà+Lạt" target="_blank">🗺️ Đường tới Lẩu Gà Lá É</a>
+    </div>
+
+</body>
+</html>
