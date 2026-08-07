@@ -54,12 +54,56 @@
 
         /* Widgets Grid */
         .widgets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 20px 0; }
-        .widget-box { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 10px; }
+        .widget-box { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 16px; padding: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: 0.2s; }
+        .widget-box:active { transform: scale(0.97); }
         .widget-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(16, 185, 129, 0.2); color: #34d399; display: flex; align-items: center; justify-content: center; font-size: 16px; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
         .widget-val { font-weight: 800; font-size: 13px; color: #fff; }
         .widget-lbl { font-size: 10px; color: var(--text-muted); }
 
-        /* TỐI ƯU THANH TABBAR KHÔNG BỊ TRÀN / LỖI CHỮ */
+        /* WEATHER FORECAST MODAL POPUP */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .weather-modal {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 380px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active .weather-modal { transform: translateY(0); }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--card-border); padding-bottom: 10px; }
+        .modal-header h3 { font-size: 15px; font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 8px; }
+        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; }
+
+        .hourly-list { display: flex; flex-direction: column; gap: 10px; max-height: 280px; overflow-y: auto; padding-right: 4px; }
+        .hourly-item { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.04); padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); font-size: 12px; }
+        .hourly-time { font-weight: 800; color: #fff; width: 85px; }
+        .hourly-status { color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+        .hourly-rain { font-weight: 800; font-size: 11px; padding: 2px 8px; border-radius: 6px; }
+        .rain-no { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+        .rain-low { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .rain-yes { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+
+        /* TỐI ƯU THANH TABBAR KHÔNG BỊ TRÀN */
         .tabs-container { 
             margin: 15px 15px 0; 
             overflow-x: auto; 
@@ -122,10 +166,10 @@
         .check-btn { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; transition: 0.2s; }
         .timeline-card.done .check-btn { color: #34d399; transform: scale(1.1); }
 
-        /* ANIMATED CYBER SCOOTER MAP */
+        /* ANIMATED CYBER SCOOTER MAP WITH STEP DISTANCE */
         .map-section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 16px; backdrop-filter: blur(10px); }
         .map-title { font-size: 13px; font-weight: 800; color: #34d399; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
-        .route-flow { display: flex; flex-direction: column; gap: 14px; position: relative; padding-left: 24px; }
+        .route-flow { display: flex; flex-direction: column; gap: 16px; position: relative; padding-left: 24px; }
         
         .route-flow::before { content: ''; position: absolute; left: 7px; top: 12px; bottom: 12px; width: 3px; background: rgba(16, 185, 129, 0.3); border-radius: 3px; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
         
@@ -137,18 +181,19 @@
             color: #f59e0b;
             font-size: 18px;
             z-index: 5;
-            animation: moveCyberBike 6s infinite linear;
+            animation: moveCyberBike 7s infinite linear;
             filter: drop-shadow(0 0 8px #f59e0b);
         }
 
         @keyframes moveCyberBike {
-            0% { top: 0%; transform: rotate(0deg); }
-            100% { top: 90%; transform: rotate(0deg); }
+            0% { top: 0%; }
+            100% { top: 92%; }
         }
 
-        .route-step { position: relative; font-size: 12px; color: #f8fafc; display: flex; align-items: center; justify-content: space-between; font-weight: 600; }
-        .route-step::before { content: ''; position: absolute; left: -21px; width: 9px; height: 9px; border-radius: 50%; background: var(--primary); border: 2px solid #030712; box-shadow: 0 0 6px var(--primary); z-index: 2; }
-        .route-dist { font-size: 10px; color: var(--accent); font-weight: 800; background: rgba(245, 158, 11, 0.1); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .route-step { position: relative; font-size: 12px; color: #f8fafc; display: flex; flex-direction: column; gap: 2px; }
+        .route-step::before { content: ''; position: absolute; left: -21px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--primary); border: 2px solid #030712; box-shadow: 0 0 6px var(--primary); z-index: 2; }
+        .step-name { font-weight: 700; color: #fff; }
+        .step-dist { font-size: 10px; color: #67e8f9; font-weight: 600; display: flex; align-items: center; gap: 4px; }
 
         /* Checklist Style */
         .pack-section-title { font-size: 11px; font-weight: 800; color: #34d399; text-transform: uppercase; margin: 12px 0 8px; letter-spacing: 1px; }
@@ -181,7 +226,7 @@
         <!-- Care Alert -->
         <div class="care-alert">
             <i class="fa-solid fa-shield-halved"></i>
-            <div><b>Lưu ý di chuyển:</b> Giữ ấm đèo dốc chiều lạnh & nhớ chuẩn bị sẵn trà gừng ấm nhé!</div>
+            <div><b>Lưu ý di chuyển:</b> Bấm vào thẻ thời tiết bên dưới để xem dự báo mưa theo giờ!</div>
         </div>
 
         <!-- Widgets -->
@@ -193,14 +238,59 @@
                     <div class="widget-lbl">Đếm ngược giờ đi</div>
                 </div>
             </div>
-            <!-- DYNAMIC API WEATHER WIDGET -->
-            <div class="widget-box">
+            <!-- DYNAMIC WEATHER WIDGET WITH CLICK EVENT -->
+            <div class="widget-box" onclick="openWeatherModal()">
                 <div class="widget-icon" id="weatherIcon"><i class="fa-solid fa-cloud-sun"></i></div>
                 <div>
                     <div class="widget-val" id="weatherTemp">Đang tải...</div>
-                    <div class="widget-lbl">Đà Lạt Thực Tế</div>
+                    <div class="widget-lbl">Đà Lạt (Chạm xem mưa)</div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- WEATHER POPUP MODAL -->
+    <div class="modal-overlay" id="weatherModal" onclick="closeWeatherModal(event)">
+        <div class="weather-modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-cloud-showers-heavy"></i> Dự Báo Mưa Theo Giờ</h3>
+                <button class="close-btn" onclick="closeWeatherModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="hourly-list">
+                <div class="hourly-item">
+                    <span class="hourly-time">05:00 - 08:00</span>
+                    <span class="hourly-status"><i class="fa-solid fa-cloud-sun" style="color: #34d399;"></i> Sương mờ</span>
+                    <span class="hourly-rain rain-no">Không mưa</span>
+                </div>
+                <div class="hourly-item">
+                    <span class="hourly-time">08:30 - 11:30</span>
+                    <span class="hourly-status"><i class="fa-solid fa-sun" style="color: #f59e0b;"></i> Nắng nhẹ</span>
+                    <span class="hourly-rain rain-no">Tạnh ráo</span>
+                </div>
+                <div class="hourly-item">
+                    <span class="hourly-time">12:00 - 13:30</span>
+                    <span class="hourly-status"><i class="fa-solid fa-cloud" style="color: #9ca3af;"></i> Mây âm u</span>
+                    <span class="hourly-rain rain-low">Lâm râm 20%</span>
+                </div>
+                <div class="hourly-item">
+                    <span class="hourly-time">14:00 - 16:00</span>
+                    <span class="hourly-status"><i class="fa-solid fa-cloud-rain" style="color: #06b6d4;"></i> Mưa rào chiều</span>
+                    <span class="hourly-rain rain-yes">Mưa 70% ☔</span>
+                </div>
+                <div class="hourly-item">
+                    <span class="hourly-time">16:30 - 18:00</span>
+                    <span class="hourly-status"><i class="fa-solid fa-cloud-sun" style="color: #34d399;"></i> Tạnh ráo</span>
+                    <span class="hourly-rain rain-no">Không mưa</span>
+                </div>
+                <div class="hourly-item">
+                    <span class="hourly-time">18:30 - 22:00</span>
+                    <span class="hourly-status"><i class="fa-solid fa-temperature-arrow-down" style="color: #fca5a5;"></i> Se lạnh ~16°C</span>
+                    <span class="hourly-rain rain-low">Mưa phún mờ</span>
+                </div>
+            </div>
+            <a class="btn-nav" style="margin-top: 15px; background: var(--primary); color: #030712; border: none;" onclick="closeWeatherModal()">
+                <i class="fa-solid fa-check"></i> Đã Hiểu Lịch Mưa
+            </a>
         </div>
     </div>
 
@@ -309,35 +399,84 @@
         </div>
     </div>
 
-    <!-- TAB BẢN ĐỒ CYBER SCOOTER -->
+    <!-- TAB BẢN ĐỒ KHOẢNG CÁCH NỐI TIẾP -->
     <div id="mapTab" class="content">
         <div class="map-section">
-            <div class="map-title"><i class="fa-solid fa-motorcycle"></i> Lộ Trình Ngày 1 (KS The Grace ➔ Suối Vàng ➔ Trại Mát)</div>
+            <div class="map-title"><i class="fa-solid fa-motorcycle"></i> Lộ Trình Tối Ưu Ngày 1 (Tổng ~43km)</div>
             <div class="route-flow">
                 <i class="fa-solid fa-motorcycle moving-bike"></i>
-                <div class="route-step"><span>1. KS The Grace (51 Nam Kỳ Khởi Nghĩa)</span><span class="route-dist">Start</span></div>
-                <div class="route-step"><span>2. Thác Mây (Săn Mây)</span><span class="route-dist">~12 km</span></div>
-                <div class="route-step"><span>3. Bánh mì xíu mại 79</span><span class="route-dist">~6 km</span></div>
-                <div class="route-step"><span>4. Đồi Măng Lin & Suối Vàng</span><span class="route-dist">~15 km</span></div>
-                <div class="route-step"><span>5. Miền Du Mục (Hoàng Hôn)</span><span class="route-dist">~18 km</span></div>
-                <div class="route-step"><span>6. Về KS The Grace & Chợ Đêm</span><span class="route-dist">~7 km</span></div>
+                <div class="route-step">
+                    <span class="step-name">1. KS The Grace (51 Nam Kỳ Khởi Nghĩa)</span>
+                    <span class="step-dist"><i class="fa-solid fa-flag-checkered"></i> Điểm xuất phát</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">2. Thác Mây (Săn Mây)</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 11 km (~25 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">3. Bánh Mì Xíu Mại 79</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 6.5 km (~15 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">4. Đồi Măng Lin</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 7 km (~15 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">5. Hồ Suối Vàng</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 6.5 km (~15 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">6. Ăn Trưa (Sườn Cay) ➔ KS The Grace</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 15 km (~30 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">7. Miền Du Mục (Hoàng Hôn)</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 7.5 km (~18 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">8. Về KS The Grace & Chợ Đêm</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 7 km (~15 phút)</span>
+                </div>
             </div>
-            <a class="btn-nav" style="margin-top: 15px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.4);" href="https://www.google.com/maps/dir/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Thác+Mây+Đà+Lạt/1+Thông+Thiên+Học+Đà+Lạt/Đồi+Măng+Lin+Đà+Lạt/Hồ+Suối+Vàng+Đà+Lạt/Miền+Du+Mục+Đà+Lạt/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt" target="_blank">
+            <a class="btn-nav" style="margin-top: 15px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.4);" href="https://www.google.com/maps/dir/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Thác+Mây+Đà+Lạt/1+Thông+Thiên+Học+Đà+Lạt/Đồi+Măng+Lin+Đà+Lạt/Hồ+Suối+Vàng+Đà+Lạt/42+Phan+Chu+Trinh+Đà+Lạt/Miền+Du+Mục+Đà+Lạt/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt" target="_blank">
                 <i class="fa-solid fa-map-location-dot"></i> Bật Bản Đồ Toàn Tuyến Ngày 1
             </a>
         </div>
 
         <div class="map-section">
-            <div class="map-title"><i class="fa-solid fa-motorcycle"></i> Lộ Trình Ngày 2 (KS The Grace ➔ Cầu Đất ➔ Bến Xe)</div>
+            <div class="map-title"><i class="fa-solid fa-motorcycle"></i> Lộ Trình Tối Ưu Ngày 2 (Tổng ~35km)</div>
             <div class="route-flow">
                 <i class="fa-solid fa-motorcycle moving-bike"></i>
-                <div class="route-step"><span>1. KS The Grace</span><span class="route-dist">Start</span></div>
-                <div class="route-step"><span>2. Đồi chè Cầu Đất (Săn Mây)</span><span class="route-dist">~24 km</span></div>
-                <div class="route-step"><span>3. Bánh Căn Lệ & Cafe Túi Mơ To</span><span class="route-dist">~20 km</span></div>
-                <div class="route-step"><span>4. Về KS The Grace trả phòng</span><span class="route-dist">~5 km</span></div>
-                <div class="route-step"><span>5. Bến Xe Liên Tỉnh Đà Lạt</span><span class="route-dist">~3 km</span></div>
+                <div class="route-step">
+                    <span class="step-name">1. KS The Grace (51 Nam Kỳ Khởi Nghĩa)</span>
+                    <span class="step-dist"><i class="fa-solid fa-flag-checkered"></i> Điểm xuất phát</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">2. Đồi Chè Cầu Đất (Săn Mây)</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 23 km (~40 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">3. Bánh Căn Lệ (27/6 Yersin)</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 18 km (~30 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">4. Tiệm Cafe Túi Mơ To</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 4.5 km (~10 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">5. Quảng Trường Lâm Viên</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 5.5 km (~12 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">6. Lẩu Gà Lá É ➔ KS The Grace</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 2 km (~5 phút)</span>
+                </div>
+                <div class="route-step">
+                    <span class="step-name">7. Bến Xe Liên Tỉnh Đà Lạt</span>
+                    <span class="step-dist"><i class="fa-solid fa-arrow-down"></i> Cách chặng trước 2.5 km (~8 phút)</span>
+                </div>
             </div>
-            <a class="btn-nav" style="margin-top: 15px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.4);" href="https://www.google.com/maps/dir/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Đồi+Chè+Cầu+Đất+Đà+Lạt/Bánh+Căn+Lệ+Yersin+Đà+Lạt/Tiệm+cà+phê+Túi+Mơ+To+Đà+Lạt/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Bến+xe+liên+tỉnh+Đà+Lạt" target="_blank">
+            <a class="btn-nav" style="margin-top: 15px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(52, 211, 153, 0.4);" href="https://www.google.com/maps/dir/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Đồi+Chè+Cầu+Đất+Đà+Lạt/Bánh+Căn+Lệ+Yersin+Đà+Lạt/Tiệm+cà+phê+Túi+Mơ+To+Đà+Lạt/Quảng+Trường+Lâm+Viên+Đà+Lạt/51+Nam+Kỳ+Khởi+Nghĩa+Đà+Lạt/Bến+xe+liên+tỉnh+Đà+Lạt" target="_blank">
                 <i class="fa-solid fa-map-location-dot"></i> Bật Bản Đồ Toàn Tuyến Ngày 2
             </a>
         </div>
@@ -404,6 +543,16 @@
 </div>
 
 <script>
+    function openWeatherModal() {
+        document.getElementById('weatherModal').classList.add('active');
+    }
+
+    function closeWeatherModal(e) {
+        if (!e || e.target.id === 'weatherModal' || e.target.tagName === 'BUTTON' || e.target.closest('.btn-nav')) {
+            document.getElementById('weatherModal').classList.remove('active');
+        }
+    }
+
     function switchDay(targetId, element) {
         document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -442,7 +591,6 @@
                 
                 document.getElementById('weatherTemp').innerText = `${temp}°C`;
 
-                // Change Icon according to Weather Code
                 const iconContainer = document.getElementById('weatherIcon');
                 if (code === 0) {
                     iconContainer.innerHTML = '<i class="fa-solid fa-sun" style="color: #f59e0b;"></i>';
